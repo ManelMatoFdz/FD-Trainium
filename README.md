@@ -1,23 +1,3 @@
-# Spring-Boot React Project
-
-_Example project to start building your own web application_
-
-## Student identification 👥
-
-Mateo Aguirre Cancela : mateo.aguirre@udc.es
-
-Iago Castro Álvarez : iago.castro.alvarez@udc.es
-
-Marcos Romay Fernández : m.romayf@udc.es
-
-Manel Mato Fernández : manel.mfernandez@udc.es
-
-Sergio Carballo Pena : sergio.carballop@udc.es
-
-Jorge Gómez García-Malvar : jorge.gomezg@udc.es
-
-Santiago López Bazarra : santiago.bazarra@udc.es
-
 ## Starting 🚀
 
 These instructions will allow you to get a copy of the project running on your local machine for development and testing purposes.
@@ -129,13 +109,3 @@ Steps to follow:
 - [React](https://es.reactjs.org/) - User Interface
 - [Maven](https://maven.apache.org/) & [yarn](https://yarnpkg.com/) - Project Management
 - [Kubernetes](https://kubernetes.io/) & [Docker](https://www.docker.com/) - Deployment
-
-## Authors ✒️
-
-- **Jorge Gabín**
-- **Alfonso Landín**
-- **Javier Parapar**
-
----
-
-IRLab ©2021
