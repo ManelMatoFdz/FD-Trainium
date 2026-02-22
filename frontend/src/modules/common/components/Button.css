@@ -1,0 +1,307 @@
+/* =============================================
+   Componente Button Unificado - Trainium
+   ============================================= */
+
+.trainium-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.25s;
+  line-height: 1.1;
+  white-space: nowrap;
+  outline: none;
+}
+
+/* Tamaños - border-radius unificado en 14px para consistencia */
+.trainium-btn--sm {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.75rem;
+  border-radius: 14px;
+}
+
+.trainium-btn--md {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  border-radius: 14px;
+}
+
+.trainium-btn--lg {
+  padding: 0.85rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 14px;
+}
+
+/* Icono solamente */
+.trainium-btn--icon-only {
+  gap: 0;
+  aspect-ratio: 1;
+  padding: 0.6rem;
+  border-radius: 50%;
+}
+
+.trainium-btn--icon-only.trainium-btn--sm {
+  padding: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.trainium-btn--icon-only.trainium-btn--lg {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* Ancho completo */
+.trainium-btn--full-width {
+  width: 100%;
+}
+
+/* ============================================= 
+   VARIANTES DE BOTÓN
+   ============================================= */
+
+/* PRIMARY - Botón principal oscuro (Nueva..., acciones principales) */
+.trainium-btn--primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+}
+
+.trainium-btn--primary:hover:not(:disabled) {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.45);
+  transform: translateY(-2px);
+}
+
+.trainium-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+}
+
+.trainium-btn--primary:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+/* SECONDARY - Botón secundario outline (Ejercicios pendientes, Volver) */
+.trainium-btn--secondary {
+  background: transparent;
+  color: #111;
+  border-color: #111;
+}
+
+.trainium-btn--secondary:hover:not(:disabled) {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.trainium-btn--secondary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+}
+
+.trainium-btn--secondary:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.4);
+}
+
+/* GHOST - Botón transparente (Editar, Limpiar) */
+.trainium-btn--ghost {
+  background: transparent;
+  color: #212529;
+  border-color: #212529;
+}
+
+.trainium-btn--ghost:hover:not(:disabled) {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 4px 12px -6px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.trainium-btn--ghost:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -4px rgba(0, 0, 0, 0.45);
+}
+
+.trainium-btn--ghost:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35);
+}
+
+/* DANGER - Botón de peligro (Eliminar) */
+.trainium-btn--danger {
+  background: #fff;
+  color: #b02a37;
+  border-color: #b02a37;
+}
+
+.trainium-btn--danger:hover:not(:disabled) {
+  background: #b02a37;
+  color: #fff;
+  box-shadow: 0 4px 12px -6px rgba(176, 42, 55, 0.6);
+  transform: translateY(-1px);
+}
+
+.trainium-btn--danger:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(176, 42, 55, 0.55);
+}
+
+.trainium-btn--danger:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(176, 42, 55, 0.35);
+}
+
+/* SUCCESS - Botón de éxito (Aprobar, Guardar) */
+.trainium-btn--success {
+  background: #fff;
+  color: #198754;
+  border-color: #198754;
+}
+
+.trainium-btn--success:hover:not(:disabled) {
+  background: #198754;
+  color: #fff;
+  box-shadow: 0 4px 12px -6px rgba(25, 135, 84, 0.6);
+  transform: translateY(-1px);
+}
+
+.trainium-btn--success:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(25, 135, 84, 0.55);
+}
+
+.trainium-btn--success:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.35);
+}
+
+/* FILTER - Botón de filtro */
+.trainium-btn--filter {
+  background: transparent;
+  color: #111;
+  border-color: #111;
+  box-shadow: 0 6px 16px -10px rgba(0, 0, 0, 0.7);
+}
+
+.trainium-btn--filter:hover:not(:disabled) {
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.7);
+}
+
+.trainium-btn--filter:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.35), 0 8px 24px -12px rgba(0, 0, 0, 0.75);
+}
+
+.trainium-btn--filter.active {
+  transform: translateY(-1px);
+}
+
+/* OUTLINE - Botón outline genérico */
+.trainium-btn--outline {
+  background: #fff;
+  color: #111;
+  border-color: #cfd3d8;
+}
+
+.trainium-btn--outline:hover:not(:disabled) {
+  background: #f8f9fa;
+  border-color: #111;
+}
+
+.trainium-btn--outline:focus:not(:disabled) {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================= 
+   ESTADOS
+   ============================================= */
+
+/* Deshabilitado */
+.trainium-btn--disabled,
+.trainium-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Como Link (eliminar underline y ajustar display) */
+a.trainium-btn {
+  text-decoration: none !important;
+  display: inline-flex;
+}
+
+a.trainium-btn:hover {
+  text-decoration: none !important;
+}
+
+/* ============================================= 
+   ELEMENTOS INTERNOS
+   ============================================= */
+
+.trainium-btn__icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+/* Iconos FontAwesome (fallback) */
+.trainium-btn__icon.fas {
+  width: auto;
+  height: auto;
+  font-size: 0.875em;
+  line-height: 1;
+}
+
+.trainium-btn--icon-only .trainium-btn__icon {
+  width: 1.35em;
+  height: 1.35em;
+}
+
+.trainium-btn--icon-only .trainium-btn__icon.fas {
+  font-size: 1.1em;
+}
+
+.trainium-btn__text {
+  line-height: 1.1;
+}
+
+/* ============================================= 
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 576px) {
+  .trainium-btn--md {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .trainium-btn--lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ============================================= 
+   ACCESIBILIDAD
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .trainium-btn {
+    transition: none !important;
+  }
+}
+
+/* Focus visible para navegación con teclado */
+.trainium-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+

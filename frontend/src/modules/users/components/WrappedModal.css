@@ -1,0 +1,410 @@
+/* WrappedModal Styles - Vibrant Spotify-Wrapped-like design */
+
+.wrapped-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapped-modal {
+    border: none;
+    border-radius: 24px;
+    width: min(90vw, 420px);
+    height: min(80vh, 600px);
+    padding: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 
+                0 0 60px rgba(233, 69, 96, 0.2),
+                0 0 120px rgba(102, 126, 234, 0.1);
+    animation: modalAppear 0.4s ease-out;
+}
+
+.wrapped-modal::backdrop {
+    background: transparent;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.wrapped-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.wrapped-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* Loading & Error States */
+.wrapped-loading,
+.wrapped-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.wrapped-error {
+    color: #ff6b6b;
+}
+
+/* Content Container */
+.wrapped-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+/* Sections */
+.wrapped-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    animation: sectionFadeIn 0.5s ease-out;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Section: Intro */
+.wrapped-section-intro .wrapped-year {
+    font-size: 6rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #e94560, #f39c12, #9b59b6, #3498db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    text-shadow: 0 0 60px rgba(233, 69, 96, 0.5);
+    animation: yearPulse 2s ease-in-out infinite;
+}
+
+@keyframes yearPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.wrapped-section-intro h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(90deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.wrapped-section-intro p {
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Lists */
+.wrapped-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 320px;
+}
+
+.wrapped-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    animation: listItemSlide 0.4s ease-out both;
+    transition: transform 0.2s ease;
+}
+
+@keyframes listItemSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.wrapped-list-item:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.wrapped-rank {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #e94560;
+    min-width: 32px;
+}
+
+.wrapped-name {
+    flex: 1;
+    text-align: left;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wrapped-count {
+    font-weight: 600;
+    color: #f39c12;
+    font-size: 0.9rem;
+}
+
+.wrapped-empty {
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Section Headers */
+.wrapped-section h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: linear-gradient(90deg, #e94560, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Stats Grid */
+.wrapped-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 100%;
+    max-width: 320px;
+}
+
+.wrapped-stat-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 20px 16px;
+    text-align: center;
+    animation: statCardPop 0.5s ease-out both;
+}
+
+@keyframes statCardPop {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.wrapped-stat-icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.wrapped-stat-value {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.wrapped-stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wrapped-stat-comparison {
+    font-size: 0.75rem;
+    color: #f39c12;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Best Friend Card */
+.wrapped-friend-card {
+    background: linear-gradient(135deg, rgba(233, 69, 96, 0.2), rgba(155, 89, 182, 0.2));
+    border: 1px solid rgba(233, 69, 96, 0.3);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    animation: friendCardGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes friendCardGlow {
+    from { box-shadow: 0 0 20px rgba(233, 69, 96, 0.2); }
+    to { box-shadow: 0 0 40px rgba(233, 69, 96, 0.4); }
+}
+
+.wrapped-friend-avatar {
+    font-size: 3rem;
+    margin-bottom: 12px;
+}
+
+.wrapped-friend-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.wrapped-friend-interactions {
+    font-size: 0.9rem;
+    color: #f39c12;
+}
+
+/* Navigation */
+.wrapped-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.wrapped-nav-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapped-nav-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.1);
+}
+
+.wrapped-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.wrapped-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.wrapped-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.wrapped-dot.active {
+    background: #e94560;
+    transform: scale(1.3);
+}
+
+.wrapped-dot:hover {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Wrapped Button for Home/Profile */
+.wrapped-button {
+    background: linear-gradient(135deg, #e94560, #9b59b6);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+}
+
+.wrapped-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(233, 69, 96, 0.4);
+}
+
+.wrapped-button i {
+    font-size: 1.1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .wrapped-modal {
+        width: 95vw;
+        height: 85vh;
+        border-radius: 16px;
+    }
+
+    .wrapped-section-intro .wrapped-year {
+        font-size: 4rem;
+    }
+
+    .wrapped-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .wrapped-list-item {
+        padding: 10px 12px;
+    }
+}

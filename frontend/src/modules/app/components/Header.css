@@ -1,0 +1,706 @@
+/* =============================================
+   Navbar profesional - Trainium
+   ============================================= */
+:root {
+  --nav-bg: #0b0c0d;
+  /* Fondo principal */
+  --nav-bg-alt: #111214;
+  /* Dropdown / elevación */
+  --nav-border: #1c1e21;
+  --nav-accent: #3d7bff;
+  /* Azul acento */
+  --nav-accent-soft: rgba(255, 255, 255, 0.72);
+  --nav-text: #d4d7dc;
+  --nav-text-strong: #ffffff;
+  --nav-text-muted: #9aa0a9;
+  --nav-hover-bg: rgba(255, 255, 255, 0.05);
+  --nav-focus-ring: 0 0 0 2px #FFFFFFB7;
+  --nav-radius-sm: .4rem;
+  --nav-radius-full: 2rem;
+  --transition-fast: .18s cubic-bezier(.4, 0, .2, 1);
+  --transition-slow: .35s cubic-bezier(.4, 0, .2, 1);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, .65);
+  --shadow-sm: 0 3px 6px -2px rgba(0, 0, 0, .55);
+  --shadow-lg: 0 18px 36px -12px rgba(0, 0, 0, .55);
+}
+
+.app-navbar-wrapper {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+.main-navbar {
+  background: var(--nav-bg);
+  border: 0;
+  padding: .75rem 0;
+  box-shadow: var(--shadow-xs), var(--shadow-sm);
+}
+
+/* Marco interior - limita ancho de contenido grande */
+.navbar-frame {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+/* Brand */
+.brand-combo {
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: .5px;
+  color: var(--nav-text-strong) !important;
+  position: relative;
+  margin-right: 1rem;
+}
+
+.brand-logo-wrapper {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(145deg, #141618, #0e0f10);
+  border: 1px solid #1e2024;
+  border-radius: 14px;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .75);
+  overflow: hidden;
+}
+
+.brand-logo {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, .6));
+  transition: transform var(--transition-slow), filter var(--transition-fast);
+}
+
+.brand-combo:hover .brand-logo,
+.brand-combo:focus .brand-logo {
+  transform: scale(1.06) rotate(-3deg);
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .7));
+}
+
+.brand-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: whitesmoke;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.82);
+  margin-left: .5rem;
+}
+
+/* Links principales */
+.main-links {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: .92rem;
+  letter-spacing: .25px;
+  color: var(--nav-text) !important;
+  padding: 0 1rem;
+  position: relative;
+  border-radius: var(--nav-radius-sm);
+  line-height: 1.15;
+  transition: background-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--nav-text-strong) !important;
+  background: var(--nav-hover-bg);
+  text-decoration: none;
+}
+
+.nav-link.active {
+  color: var(--nav-text-strong) !important;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 2px 8px -2px rgba(255, 255, 255, 0.18), 0 0 0 2px var(--nav-accent-soft);
+  border-radius: var(--nav-radius-sm);
+  transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.nav-link.active::after {
+  display: none;
+}
+
+/* Dropdown usuario */
+.user-dropdown {
+  margin-left: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.user-trigger {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  padding: 0 1rem;
+  color: var(--nav-text) !important;
+  border-radius: var(--nav-radius-full);
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  height: 40px;
+}
+
+.user-trigger:hover,
+.user-trigger:focus {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--nav-text-strong) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+}
+
+.user-trigger:focus {
+  box-shadow: var(--nav-focus-ring);
+}
+
+.user-icon {
+  font-size: 1.25rem;
+  opacity: .85;
+}
+
+.user-name-text {
+  font-size: .9rem;
+  font-weight: 500;
+  letter-spacing: .35px;
+}
+
+/* Dropdown menú */
+.user-menu {
+  margin-top: .55rem;
+  padding: .45rem .5rem .55rem;
+  background: var(--nav-bg-alt);
+  border: 1px solid var(--nav-border);
+  border-radius: .8rem;
+  min-width: 14rem;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(.97);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), visibility var(--transition-fast);
+}
+
+/* Mostrar dropdown con hover */
+.user-dropdown-hover:hover .user-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Mantener el dropdown visible cuando el mouse está sobre él */
+.user-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* Compatibilidad con Bootstrap - mostrar cuando tiene clase show */
+.user-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+  font-size: .86rem;
+  font-weight: 500;
+  color: var(--nav-text);
+  padding: .55rem .75rem;
+  border-radius: .55rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast), padding-left var(--transition-fast);
+  position: relative;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--nav-text-strong);
+  padding-left: .85rem;
+}
+
+.dropdown-divider {
+  border-top-color: #25282c;
+}
+
+.logout-item {
+  color: #ff6b6b !important;
+  font-weight: 600;
+}
+
+.logout-item:hover {
+  background: rgba(255, 107, 107, .08);
+  color: #ff8f8f !important;
+}
+
+/* Toggler responsive */
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: .4rem .55rem;
+  border-radius: .6rem;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  background: rgba(255, 255, 255, .07);
+  outline: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: var(--nav-focus-ring);
+}
+
+/* Ajustes para pantallas intermedias (evitar recorte) */
+@media (min-width: 1200px) and (max-width: 1400px) {
+  .nav-link {
+    padding: 0 .6rem;
+    font-size: .85rem;
+  }
+
+  .header-search {
+    min-width: 150px;
+  }
+
+  .user-nav {
+    gap: 0.75rem;
+  }
+
+  .user-name-text {
+    display: none;
+    /* Oculta el nombre, solo avatar */
+  }
+
+  .user-trigger {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Ajustes collapse en mobile/tablet */
+@media (max-width: 1199.98px) {
+  .navbar-frame {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 0;
+  }
+
+  /* User-nav arriba de todo usando order */
+  .user-nav {
+    order: -1 !important;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid #1e2024;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+  }
+
+  .user-nav .nav-item {
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  /* Buscador más compacto en la fila */
+  .header-search {
+    min-width: 240px;
+    max-width: 300px;
+    flex: 1;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .main-links {
+    order: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 0.25rem;
+    padding: 0 1rem;
+    gap: 0.25rem;
+  }
+
+  .main-links .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    padding: .75rem 1rem;
+    width: 100%;
+    justify-content: flex-start;
+    border-radius: 8px;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link.active::after {
+    bottom: 2px;
+  }
+
+  .user-dropdown {
+    margin-top: 0;
+    margin-left: 0;
+    width: auto;
+  }
+
+  .user-trigger {
+    width: auto;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    border-radius: 999px;
+  }
+
+  .user-name-text {
+    display: none;
+  }
+
+  .user-menu {
+    box-shadow: var(--shadow-sm);
+    position: absolute;
+    width: auto;
+    min-width: 14rem;
+    margin-top: 0.5rem;
+    right: 0;
+  }
+}
+
+/* Focus accesible genérico */
+.nav-link:focus,
+.dropdown-item:focus {
+  outline: none;
+  box-shadow: var(--nav-focus-ring);
+}
+
+/* Animación sutil hover elevación */
+.nav-link:hover:not(.active) {
+  transform: translateY(-1px);
+}
+
+/* Soporte motion reduce */
+@media (prefers-reduced-motion: reduce) {
+
+  .nav-link,
+  .brand-logo,
+  .dropdown-item,
+  .user-trigger {
+    transition: none !important;
+  }
+}
+
+/* Avatar usuario */
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #2a2d31;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-avatar img,
+.user-avatar svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* =============================
+   Search bar (coherente navbar)
+   ============================= */
+.header-search {
+  position: relative;
+  min-width: 200px;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.search-input {
+  width: 100%;
+  height: 40px;
+  padding: .5rem 2.25rem .5rem 2.25rem;
+  /* espacio para icono y clear */
+  border-radius: var(--nav-radius-full);
+  border: 1px solid var(--nav-border);
+  background: #16181b;
+  color: var(--nav-text-strong);
+  font-size: .95rem;
+  transition: box-shadow var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.search-input::placeholder {
+  color: var(--nav-text-muted);
+  opacity: .9;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: var(--nav-focus-ring), 0 6px 16px -8px rgba(0, 0, 0, .75);
+  background: #1a1d21;
+}
+
+.search-icon {
+  position: absolute;
+  left: .75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nav-text-muted);
+  font-size: .95rem;
+  pointer-events: none;
+}
+
+.search-clear {
+  position: absolute;
+  right: .35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 0;
+  background: transparent;
+  color: var(--nav-text);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.search-clear:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--nav-text-strong);
+}
+
+.search-clear:focus {
+  outline: none;
+  box-shadow: var(--nav-focus-ring);
+}
+
+.search-dropdown {
+  display: block;
+  width: 100%;
+  max-height: 320px;
+  overflow-y: auto;
+  margin-top: .35rem;
+  background: var(--nav-bg-alt);
+  border: 1px solid var(--nav-border);
+  border-radius: .8rem;
+  box-shadow: var(--shadow-lg);
+}
+
+.search-dropdown .dropdown-item {
+  color: var(--nav-text);
+}
+
+.search-dropdown .dropdown-item:hover {
+  color: var(--nav-text-strong);
+}
+
+/* Espaciado entre grupos del navbar */
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.user-nav .nav-item {
+  margin-right: 0;
+}
+
+.user-nav>.nav-item:not(:last-child) {
+  margin-right: 0;
+}
+
+/* Espaciado entre el grupo de links principales y el grupo de usuario */
+.navbar-collapse {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* =============================================
+   Navbar elementos siempre visibles (móvil)
+   ============================================= */
+.navbar-always-visible {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  order: 2;
+}
+
+/* En desktop (>= 1200px), ocultar los elementos siempre visibles */
+@media (min-width: 1200px) {
+  .navbar-always-visible {
+    display: none !important;
+  }
+}
+
+/* En móviles, ajustar el orden y layout */
+@media (max-width: 1199.98px) {
+  .navbar-frame {
+    flex-wrap: wrap;
+  }
+
+  /* Ocultar texto "TRAINIUM" en móviles */
+  .brand-text {
+    display: none;
+  }
+
+  .brand-combo {
+    margin-right: 0.5rem;
+  }
+
+  .navbar-always-visible {
+    order: 2;
+    margin-left: auto;
+    margin-right: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .navbar-toggler {
+    order: 3;
+    margin-left: 0.5rem;
+  }
+
+  .navbar-collapse {
+    order: 4;
+    width: 100%;
+    padding: 0.75rem 0 0.5rem 0;
+  }
+
+  /* Contenedor de búsqueda en móvil */
+  .navbar-collapse .header-search {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-collapse .header-search .search-input {
+    width: 100%;
+    height: 44px;
+  }
+
+  /* Lupa centrada verticalmente */
+  .navbar-collapse .header-search .search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  /* X de borrar búsqueda - centrada verticalmente */
+  .navbar-collapse .header-search .search-clear {
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+  }
+
+  /* Dropdown de resultados posición absoluta - no desplaza nav */
+  .navbar-collapse .header-search .search-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    margin-top: 0.25rem;
+  }
+
+  /* Páginas de navegación - reducir espacio superior */
+  .navbar-collapse .main-links {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+  }
+
+  .navbar-collapse .main-links li a {
+    padding: 1rem;
+  }
+
+  /* Panel de notificaciones en móviles */
+  .navbar-always-visible .ntf-container {
+    position: static;
+  }
+
+  .navbar-always-visible .ntf-panel {
+    position: fixed;
+    top: 70px;
+    left: 1rem;
+    right: 1rem;
+    width: auto;
+    max-width: calc(100vw - 2rem);
+    z-index: 1060;
+  }
+
+  .navbar-always-visible .ntf-panel::before {
+    display: none;
+  }
+
+  /* Menú de perfil en móviles */
+  .navbar-always-visible .user-dropdown {
+    position: static;
+  }
+
+  .navbar-always-visible .user-menu {
+    position: fixed;
+    top: 70px;
+    right: 1rem;
+    left: auto;
+    min-width: 200px;
+    z-index: 1060;
+    display: none;
+  }
+
+  /* Mostrar menú de perfil con hover en móviles */
+  .navbar-always-visible .user-dropdown:hover .user-menu,
+  .navbar-always-visible .user-dropdown:focus-within .user-menu,
+  .navbar-always-visible .user-menu.show {
+    display: block;
+  }
+}

@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ********************************************** -->
+	<!-- **************** PROJECT INFO **************** -->
+	<!-- ********************************************** -->
+	<groupId>es.udc.fi.dc.fd</groupId>
+	<artifactId>trainium</artifactId>
+	<version>0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>FD Spring MVC Trainium App</name>
+	<description>Test project for FD 2025</description>
+	<url>https://gitlab.fic.udc.es/ferramentas.2025/trainium</url>
+	<inceptionYear>2025</inceptionYear>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.3</version>
+	</parent>
+
+	<!-- ********************************************** -->
+	<!-- **************** PROPERTIES ****************** -->
+	<!-- ********************************************** -->
+	<properties>
+		<!--  Compiler options -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>17</java.version>
+
+		<dataSource.user>fd</dataSource.user>
+        <dataSource.password>fd</dataSource.password>
+        <testDataSource.user>${dataSource.user}</testDataSource.user>
+        <testDataSource.password>${dataSource.password}</testDataSource.password>
+
+		<!--  Global properties -->
+		<project.contextPath>/trainium</project.contextPath>
+
+		<!--  Dependencies versions  -->
+		<jjwt.version>0.11.5</jjwt.version>
+		<hibernate.validator.version>8.0.1.Final</hibernate.validator.version>
+
+		<!--  Plugins versions  -->
+		<plugin.jkube.version>1.3.0</plugin.jkube.version>
+		<plugin.jacoco.version>0.8.10</plugin.jacoco.version>
+		<plugin.frontend.version>1.15.1</plugin.frontend.version>
+		<plugin.m2e.version>1.0.0</plugin.m2e.version>
+		<plugin.sql.version>1.5</plugin.sql.version>
+		<surefireMavenPlugin.version>3.2.5</surefireMavenPlugin.version>
+		
+		<!--  Frontend test skip property  -->
+		<skip.frontend.tests>false</skip.frontend.tests>
+		<!-- Skip all frontend executions when running only backend tests -->
+		<skip.frontend.all>false</skip.frontend.all>
+		
+		<!--  SQL plugin skip property  -->
+		<skip.sql.execution>false</skip.sql.execution>
+	</properties>
+
+
+	<!-- ********************************************** -->
+	<!-- *************** REPOSITORIES ***************** -->
+	<!-- ********************************************** -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>tudelft</id>
+			<name>Tudelft Repository</name>
+			<url>https://simulation.tudelft.nl/maven/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<!-- ********************************************** -->
+	<!-- ************ RESOURCES AND SERVICES ********** -->
+	<!-- ********************************************** -->
+	<scm>
+		<connection>scm:git:https://gitlab.fic.udc.es/ferramentas.2025/ferramentas.2025/trainium.git</connection>
+		<developerConnection>scm:git:https://gitlab.fic.udc.es/ferramentas.2025/trainium.git</developerConnection>
+		<tag>head</tag>
+		<url>https://gitlab.fic.udc.es/ferramentas.2025/trainium</url>
+	</scm>
+
+	<issueManagement>
+		<system>Redmine</system>
+		<url>https://redmine.fic.udc.es/project/trainium/issues</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>jenkins</system>
+		<url>https://jenkins.fic.udc.es/job/trainium</url>
+	</ciManagement>
+
+	<!-- ********************************************** -->
+	<!-- ****************** PROFILES ****************** -->
+	<!-- ********************************************** -->
+	<profiles>
+	<!-- ============================================== -->
+	<!-- ============= DATABASE PROFILES ============== -->
+	<!-- ============================================== -->
+
+	<!-- H2 database profile (default for tests and development) -->
+	<profile>
+		<id>h2</id>
+		<activation>
+			<activeByDefault>false</activeByDefault>
+		</activation>
+		<properties>
+			<!-- JDBC driver properties -->
+			<jdbcDriver.groupId>com.h2database</jdbcDriver.groupId>
+			<jdbcDriver.artifactId>h2</jdbcDriver.artifactId>
+			<jdbcDriver.version>2.2.224</jdbcDriver.version>
+			<jdbcDriver.className>org.h2.Driver</jdbcDriver.className>
+
+			<!-- H2 in-memory database -->
+			<dataSource.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE</dataSource.url>
+			<testDataSource.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE</testDataSource.url>
+			
+			<!-- H2 credentials -->
+			<dataSource.user>sa</dataSource.user>
+			<dataSource.password></dataSource.password>
+			<testDataSource.user>sa</testDataSource.user>
+			<testDataSource.password></testDataSource.password>
+			
+			<!-- H2 schema scripts -->
+			<dataSource.createTablesScript>1-schema.sql</dataSource.createTablesScript>
+			<dataSource.createDataScript>2-data.sql</dataSource.createDataScript>
+			
+			<!-- Skip SQL plugin - H2 uses spring.sql.init automatically -->
+			<skip.sql.execution>true</skip.sql.execution>
+		</properties>
+	</profile>
+
+	<!-- MySQL database profile (para tu entorno local) -->
+	<profile>
+		<id>mysql</id>
+		<activation>
+			<!-- Activado por defecto para ejecuciones locales (usa MySQL). -->
+			<activeByDefault>true</activeByDefault>
+		</activation>
+		<properties>
+			<!-- JDBC driver properties -->
+			<jdbcDriver.groupId>com.mysql</jdbcDriver.groupId>
+			<jdbcDriver.artifactId>mysql-connector-j</jdbcDriver.artifactId>
+			<jdbcDriver.version>8.4.0</jdbcDriver.version>
+			<jdbcDriver.className>com.mysql.cj.jdbc.Driver</jdbcDriver.className>
+
+			<!--  Data source properties -->
+			<dataSource.baseUrl>jdbc:mysql://localhost/trainium</dataSource.baseUrl>
+			<dataSource.url>${dataSource.baseUrl}?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Europe/Madrid</dataSource.url>
+			<testDataSource.url>${dataSource.baseUrl}test?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=Europe/Madrid</testDataSource.url>
+
+
+			<!-- Opcional: scripts de inicialización si los tienes -->
+			
+			<dataSource.createTablesScript>1-schema.sql</dataSource.createTablesScript>
+			<dataSource.createDataScript>2-data.sql</dataSource.createDataScript>
+			
+		</properties>
+	</profile>
+
+	<!-- H2 database profile (para tests y CI/CD) -->
+	<profile>
+		<id>test</id>
+		<properties>
+			<!-- JDBC driver properties -->
+			<jdbcDriver.groupId>com.h2database</jdbcDriver.groupId>
+			<jdbcDriver.artifactId>h2</jdbcDriver.artifactId>
+			<jdbcDriver.version>2.2.224</jdbcDriver.version>
+			<jdbcDriver.className>org.h2.Driver</jdbcDriver.className>
+
+			<!-- H2 in-memory database -->
+			<dataSource.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE</dataSource.url>
+			<testDataSource.url>jdbc:h2:mem:testdb;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE</testDataSource.url>
+			
+			<!-- H2 credentials -->
+			<dataSource.user>sa</dataSource.user>
+			<dataSource.password></dataSource.password>
+			<testDataSource.user>sa</testDataSource.user>
+			<testDataSource.password></testDataSource.password>
+			
+			<!-- H2 usa el mismo schema (ya es compatible) -->
+			<dataSource.createTablesScript>1-schema.sql</dataSource.createTablesScript>
+			<dataSource.createDataScript>2-data.sql</dataSource.createDataScript>
+			
+			<!-- Skip SQL plugin - H2 usa spring.sql.init automáticamente -->
+			<skip.sql.execution>true</skip.sql.execution>
+
+			<sonar.coverage.exclusions>
+				**/entities/**,
+				**/dtos/**,
+				**/rest/dtos/**,
+				**/rest/common/**,
+				**/rest/config/**,
+				**/*Config.java,
+				**/*Conversor.java,
+				**/dao/**,
+				**/common/enums/**,
+				**/model/services/exceptions/**,
+				**/model/services/Block.java,
+				**/model/services/*Service.java
+			</sonar.coverage.exclusions>
+		</properties>
+	</profile>
+</profiles>
+
+
+	<!-- ********************************************** -->
+	<!-- **************** DEPENDENCIES **************** -->
+	<!-- ********************************************** -->
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+		</dependency>
+
+		<!-- H2 Database for tests only -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>		
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- ********************************************** -->
+	<!-- ******************* BUILD ******************** -->
+	<!-- ********************************************** -->
+	<build>
+		<!-- ============================================== -->
+		<!-- =============== RESOURCES ==================== -->
+		<!-- ============================================== -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+		<!-- ============================================== -->
+		<!-- =============== TEST RESOURCES =============== -->
+		<!-- ============================================== -->
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<!-- ============================================== -->
+		<!-- =================== PLUGINS ================== -->
+		<!-- ============================================== -->
+		<plugins>
+			<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefireMavenPlugin.version}</version>
+				<configuration>
+					<argLine>${argLine}</argLine>
+					<!-- Ejecutar tests en JVM forked para que el argLine sea aplicado -->
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+					<!-- Activar perfil test automáticamente para usar H2 -->
+					<systemPropertyVariables>
+						<spring.profiles.active>test</spring.profiles.active>
+					</systemPropertyVariables>
+				</configuration>
+			</plugin>
+
+			<!-- Mysql -->
+			<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>sql-maven-plugin</artifactId>
+                <version>${plugin.sql.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>${jdbcDriver.groupId}</groupId>
+                        <artifactId>${jdbcDriver.artifactId}</artifactId>
+                        <version>${jdbcDriver.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <driver>${jdbcDriver.className}</driver>
+                    <url>${dataSource.url}</url>
+                    <username>${dataSource.user}</username>
+                    <password>${dataSource.password}</password>
+                    <autocommit>true</autocommit>
+                    <onError>continue</onError>
+                    <orderFile>ascending</orderFile> 
+                    <fileset>
+                        <basedir>${basedir}</basedir>
+                        <includes>
+                            <include>src/main/resources/${dataSource.createTablesScript}</include>
+                            <include>src/main/resources/${dataSource.createDataScript}</include>
+                        </includes>
+                    </fileset>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>create-tables-for-testing</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>execute</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${skip.sql.execution}</skip>
+                            <driver>${jdbcDriver.className}</driver>
+                            <url>${testDataSource.url}</url>
+                            <username>${testDataSource.user}</username>
+                            <password>${testDataSource.password}</password>
+                            <autocommit>true</autocommit>
+                            <onError>continue</onError>
+                            <fileset>
+                                <basedir>${basedir}</basedir>
+                                <includes>
+                                    <include>src/main/resources/${dataSource.createTablesScript}</include>
+                                </includes>
+                            </fileset>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			<!-- Kubernetes deployment config -->
+			<plugin>
+				<groupId>org.eclipse.jkube</groupId>
+				<artifactId>kubernetes-maven-plugin</artifactId>
+				<version>${plugin.jkube.version}</version>
+
+				<configuration>
+					<images>
+						<image>
+							<name>gitlab.fic.udc.es:5050/ferramentas.2025/trainium</name>
+							<build>
+								<dockerFile>Dockerfile</dockerFile>
+							</build>
+						</image>
+					</images>
+
+					<resources>
+						<controllerName>${project.artifactId}</controllerName>
+					</resources>
+
+					<enricher>
+						<config>
+							<jkube-service>
+								<port>8080</port>
+							</jkube-service>
+						</config>
+					</enricher>
+				</configuration>
+			</plugin>
+
+			<!-- Jacoco setup -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${plugin.jacoco.version}</version>
+				<executions>
+					<execution>
+						<id>prepare-agent</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<dataFile>${project.build.directory}/jacoco.exec</dataFile>
+							<outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
+							<outputEncoding>UTF-8</outputEncoding>
+							<reports>
+								<xml>true</xml>
+								<html>true</html>
+							</reports>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<version>${plugin.frontend.version}</version>
+				<configuration>
+					<workingDirectory>frontend</workingDirectory>
+					<installDirectory>target</installDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<id>install node and yarn</id>
+						<goals>
+							<goal>install-node-and-yarn</goal>
+						</goals>
+						<configuration>
+							<nodeVersion>v22.18.0</nodeVersion>
+							<yarnVersion>v1.22.19</yarnVersion>
+							<skip>${skip.frontend.all}</skip>
+						</configuration>
+						<phase>generate-resources</phase>
+					</execution>
+					<execution>
+						<id>yarn install</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<configuration>
+							<arguments>install</arguments>
+							<skip>${skip.frontend.all}</skip>
+						</configuration>
+						<phase>generate-resources</phase>
+					</execution>
+				<execution>
+					<id>yarn test</id>
+					<goals>
+						<goal>yarn</goal>
+					</goals>
+					<configuration>
+						<arguments>run test --reporters=jest-standard-reporter --coverage --watchAll=false</arguments>
+						<skip>${skip.frontend.tests}</skip>
+						<!-- Also honor global skip -->
+						<skip>${skip.frontend.all}</skip>
+					</configuration>
+					<phase>test</phase>
+				</execution>
+					<execution>
+						<id>yarn build</id>
+						<goals>
+							<goal>yarn</goal>
+						</goals>
+						<configuration>
+							<arguments>run build</arguments>
+							<skip>${skip.frontend.all}</skip>
+						</configuration>
+						<phase>generate-resources</phase>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes/public</outputDirectory>
+							<resources>
+								<resource>
+									<directory>${project.basedir}/frontend/build</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<!-- ============================================== -->
+		<!-- ============= PLUGINS MANAGEMENT ============= -->
+		<!-- ============================================== -->
+		<pluginManagement>
+			<plugins>
+				<!-- This plugin's configuration is used to store Eclipse m2e
+				     settings only. It has no influence on the Maven build
+				     itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>${plugin.m2e.version}</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>sql-maven-plugin</artifactId>
+										<versionRange>${plugin.sql.version}</versionRange>
+										<goals>
+											<goal>execute</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>

@@ -1,0 +1,506 @@
+.profile-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.15), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-transform: none;
+  transition: all 0.2s ease;
+  color: inherit;
+}
+
+.profile-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.12);
+}
+
+.profile-badge i {
+  opacity: 0.95;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.profile-badge--icon-only {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.profile-badge--first {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
+  color: #fff;
+  border-color: rgba(124, 58, 237, 0.2);
+  box-shadow: 0 2px 8px -2px rgba(124, 58, 237, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--consistency-1 {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%);
+  color: #fff;
+  border-color: rgba(205, 127, 50, 0.25);
+  box-shadow: 0 2px 8px -2px rgba(205, 127, 50, 0.25), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--consistency-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%);
+  color: #1f2937;
+  border-color: rgba(192, 192, 192, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(192, 192, 192, 0.2), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--consistency-3 {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%);
+  color: #1f2937;
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(255, 215, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--strength-1 {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%);
+  color: #fff;
+  border-color: rgba(205, 127, 50, 0.25);
+  box-shadow: 0 2px 8px -2px rgba(205, 127, 50, 0.25), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--strength-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%);
+  color: #1f2937;
+  border-color: rgba(192, 192, 192, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(192, 192, 192, 0.2), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--strength-3 {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%);
+  color: #1f2937;
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(255, 215, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--neutral {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+  color: #e5e7eb;
+  border-color: rgba(31, 41, 55, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.badge-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.badge-modal {
+  background: #fff;
+  border-radius: 20px;
+  padding: 0;
+  width: min(420px, 92vw);
+  max-height: min(80vh, 600px);
+  box-shadow: 0 20px 60px -12px rgba(0, 0, 0, 0.5), 0 8px 24px -8px rgba(0, 0, 0, 0.3);
+  border: 1px solid #e1e4e8;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Modal de detalle de insignia individual - estructura mejorada */
+.badge-modal>.profile-badge.mb-2 {
+  font-size: 1.15rem;
+  padding: 1.25rem 2.25rem;
+  margin: 0 auto 4rem !important;
+  margin-bottom: 2rem !important;
+  display: inline-flex;
+  gap: 0.9rem;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  border-radius: 16px;
+  font-weight: 700;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+/* Asegurar que los colores de las variantes se apliquen correctamente en el modal */
+.badge-modal>.profile-badge.mb-2.profile-badge--first {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%) !important;
+  color: #fff !important;
+  border-color: rgba(124, 58, 237, 0.2) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--consistency-1 {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%) !important;
+  color: #fff !important;
+  border-color: rgba(205, 127, 50, 0.25) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--consistency-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(192, 192, 192, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--consistency-3 {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--strength-1 {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%) !important;
+  color: #fff !important;
+  border-color: rgba(205, 127, 50, 0.25) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--strength-2 {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(192, 192, 192, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--strength-3 {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--bronze {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%) !important;
+  color: #fff !important;
+  border-color: rgba(205, 127, 50, 0.25) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--silver {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(192, 192, 192, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--gold {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%) !important;
+  color: #1f2937 !important;
+  border-color: rgba(255, 215, 0, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2.profile-badge--neutral {
+  background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
+  color: #e5e7eb !important;
+  border-color: rgba(31, 41, 55, 0.3) !important;
+}
+
+.badge-modal>.profile-badge.mb-2 i {
+  font-size: 1.35rem;
+  opacity: 1;
+  line-height: 1;
+  display: inline-block;
+}
+
+.badge-modal>p.text-muted.mb-3 {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #374151 !important;
+  margin: 0 auto 2.75rem;
+  max-width: 340px;
+  padding: 0;
+  text-align: center;
+  display: block;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.badge-modal>.btn {
+  min-width: 140px;
+  padding: 0.85rem 2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #111827;
+  color: #fff;
+  border: 1px solid #111827;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.15), 0 1px 4px -1px rgba(0, 0, 0, 0.1);
+}
+
+.badge-modal>.btn:hover {
+  background: #1f2937;
+  border-color: #1f2937;
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.2), 0 2px 6px -1px rgba(0, 0, 0, 0.15);
+}
+
+.badge-modal>.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+.badge-modal>.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.15), 0 2px 8px -2px rgba(0, 0, 0, 0.15);
+}
+
+/* Cuando el modal contiene directamente una insignia (modal de detalle) */
+.badge-modal:has(> .profile-badge.mb-2) {
+  padding: 2.25rem 2.5rem 1.75rem;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  width: min(400px, 92vw);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.badge-modal>div:first-child {
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid #e1e4e8;
+  background: linear-gradient(to bottom, #fafbfc 0%, #fff 100%);
+  flex-shrink: 0;
+}
+
+.badge-modal>div:first-child h6 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d0d0d;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.badge-modal .badge-legend-grid {
+  max-height: min(calc(85vh - 100px), 600px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem 2rem;
+}
+
+.badge-modal .badge-legend-grid::-webkit-scrollbar {
+  width: 8px;
+}
+
+.badge-modal .badge-legend-grid::-webkit-scrollbar-track {
+  background: #f1f3f6;
+  border-radius: 4px;
+}
+
+.badge-modal .badge-legend-grid::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.badge-modal .badge-legend-grid::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+.badge-legend {
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem 2rem;
+}
+
+.badge-legend::-webkit-scrollbar {
+  width: 8px;
+}
+
+.badge-legend::-webkit-scrollbar-track {
+  background: #f1f3f6;
+  border-radius: 4px;
+}
+
+.badge-legend::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.badge-legend::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+.badge-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+@media (max-width: 576px) {
+  .badge-legend-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+.badge-legend-item {
+  display: flex !important;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem !important;
+  border-radius: 10px;
+  background: #fafbfc;
+  border: 1px solid #e1e4e8;
+  min-height: auto;
+  height: auto;
+  width: 100%;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: visible;
+  box-sizing: border-box;
+  align-self: stretch;
+  margin: 0 !important;
+}
+
+.badge-legend-item:hover {
+  background: #fff;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1), 0 2px 6px -2px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.badge-legend-item .profile-badge {
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  color: #fff !important;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  margin: 0 !important;
+  align-self: flex-start;
+}
+
+.badge-legend-item .profile-badge i {
+  color: #fff !important;
+}
+
+.badge-legend-item:hover .profile-badge {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.22), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+}
+
+.badge-legend-item>div {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.badge-legend-item .fw-semibold {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0d0d0d;
+  margin: 0 0 0.25rem 0 !important;
+  padding: 0 !important;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.badge-legend-item small,
+.badge-legend-item .text-muted {
+  font-size: 0.8rem;
+  color: #6c757d !important;
+  line-height: 1.45;
+  display: block;
+  margin: 0 !important;
+  padding: 0 !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Social tiers */
+.profile-badge--bronze {
+  background: linear-gradient(135deg, #cd7f32 0%, #b87333 50%, #a0652a 100%);
+  color: #fff;
+  border-color: rgba(205, 127, 50, 0.25);
+  box-shadow: 0 2px 8px -2px rgba(205, 127, 50, 0.25), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--silver {
+  background: linear-gradient(135deg, #c0c0c0 0%, #a9a9a9 50%, #9ca3af 100%);
+  color: #1f2937;
+  border-color: rgba(192, 192, 192, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(192, 192, 192, 0.2), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+.profile-badge--gold {
+  background: linear-gradient(135deg, #ffd700 0%, #e6b800 50%, #d4af37 100%);
+  color: #1f2937;
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 2px 8px -2px rgba(255, 215, 0, 0.3), 0 1px 3px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones de acción del perfil (para igualar tamaño con wrapped-button) */
+.profile-action-button {
+  padding: 12px 24px !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  min-height: 48px;
+  /* Asegura altura consistente de 48px */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.profile-action-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.profile-action-button i {
+  font-size: 1.1rem !important;
+  margin-right: 8px;
+  /* Ajuste para cuando no es Wrapped button */
+}

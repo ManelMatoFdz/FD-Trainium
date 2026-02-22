@@ -1,0 +1,220 @@
+/* Overlay del modal con backdrop blur */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+  pointer-events: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Backdrop button para cerrar el modal */
+.confirm-modal-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  z-index: -1;
+}
+
+/* Contenedor del modal */
+.confirm-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 440px;
+  width: 100%;
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  border: none;
+  z-index: 1;
+}
+
+/* Estilos para el backdrop nativo del dialog */
+.confirm-modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px)) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Contenedor del icono */
+.confirm-modal__icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Iconos base */
+.confirm-modal__icon {
+  width: 64px;
+  height: 64px;
+  stroke-width: 1.5;
+  animation: iconPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes iconPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Variantes de iconos */
+.confirm-modal__icon--danger {
+  color: #dc2626;
+  filter: drop-shadow(0 4px 12px rgba(220, 38, 38, 0.25));
+}
+
+.confirm-modal__icon--warning {
+  color: #f59e0b;
+  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.25));
+}
+
+.confirm-modal__icon--success {
+  color: #10b981;
+  filter: drop-shadow(0 4px 12px rgba(16, 185, 129, 0.25));
+}
+
+.confirm-modal__icon--info {
+  color: #3b82f6;
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.25));
+}
+
+/* Contenido del modal */
+.confirm-modal__content {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.confirm-modal__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.confirm-modal__message {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Acciones del modal */
+.confirm-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .confirm-modal__actions {
+    flex-direction: row;
+  }
+}
+
+/* Responsive */
+@media (max-width: 479px) {
+  .confirm-modal {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .confirm-modal__icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .confirm-modal__title {
+    font-size: 1.25rem;
+  }
+
+  .confirm-modal__message {
+    font-size: 0.9375rem;
+  }
+}
+
+/* Accesibilidad: reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .confirm-modal-overlay,
+  .confirm-modal,
+  .confirm-modal__icon {
+    animation: none;
+  }
+
+  .confirm-modal-overlay {
+    opacity: 1;
+  }
+
+  .confirm-modal {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  .confirm-modal__icon {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Estado de carga */
+.confirm-modal__actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+

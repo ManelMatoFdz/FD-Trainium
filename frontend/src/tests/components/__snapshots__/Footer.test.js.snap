@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders default variant with separator and matches snapshot 1`] = `
+<div
+  className=""
+>
+  <br />
+  <hr />
+  <footer>
+    <p
+      className="text-center"
+    >
+      © Trainium 2025
+    </p>
+  </footer>
+</div>
+`;

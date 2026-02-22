@@ -1,0 +1,179 @@
+/* =============================================
+   ButtonGroup - Agrupación de botones con dropdown
+   ============================================= */
+
+.trainium-button-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Dropdown container */
+.trainium-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Botón trigger del dropdown con Heroicon */
+.trainium-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.trainium-dropdown-trigger:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.trainium-dropdown-trigger:active,
+.trainium-dropdown-trigger.active {
+  background: #e5e7eb;
+  border-color: #6b7280;
+}
+
+.trainium-dropdown-trigger:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Icono de Heroicons */
+.trainium-dropdown-icon {
+  width: 20px;
+  height: 20px;
+  color: #374151;
+  transition: color 0.2s ease;
+}
+
+.trainium-dropdown-trigger:hover .trainium-dropdown-icon {
+  color: #111827;
+}
+
+.trainium-dropdown-trigger.active .trainium-dropdown-icon {
+  color: #000;
+}
+
+/* Menú dropdown */
+.trainium-dropdown-menu {
+  position: fixed;
+  min-width: 200px;
+  background: #fff;
+  border: 1px solid #dcdfe3;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.25), 0 4px 12px -4px rgba(0, 0, 0, 0.15);
+  padding: 0.5rem;
+  z-index: 9999;
+  animation: dropdownFadeIn 0.2s ease;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Items del dropdown */
+.trainium-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #212529;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.trainium-dropdown-item:hover:not(:disabled) {
+  background: #f3f4f6;
+  color: #000;
+}
+
+.trainium-dropdown-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Iconos de Heroicons */
+.trainium-dropdown-item__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+  color: currentColor;
+}
+
+/* Iconos FontAwesome (fallback) */
+.trainium-dropdown-item__icon.fas {
+  width: 16px;
+  height: auto;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* Soporte legacy para iconos sin clase específica */
+.trainium-dropdown-item i {
+  font-size: 0.875rem;
+  width: 16px;
+  text-align: center;
+}
+
+/* Variantes de color para items */
+.trainium-dropdown-item.danger {
+  color: #b02a37;
+}
+
+.trainium-dropdown-item.danger:hover:not(:disabled) {
+  background: #fff5f5;
+  color: #b02a37;
+}
+
+.trainium-dropdown-item.success {
+  color: #198754;
+}
+
+.trainium-dropdown-item.success:hover:not(:disabled) {
+  background: #f0fdf4;
+  color: #198754;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .trainium-button-group {
+    gap: 0.5rem;
+  }
+
+  .trainium-dropdown-menu {
+    min-width: 180px;
+    right: auto;
+    left: 0;
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .trainium-dropdown-menu {
+    animation: none;
+  }
+}
+

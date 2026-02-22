@@ -1,0 +1,911 @@
+/* =============================================
+   EXECUTION STATISTICS - Estadísticas Profesionales
+   Diseño minimalista con tonalidades de negro
+   ============================================= */
+
+/* =============================================
+   CONTENEDOR PRINCIPAL
+   ============================================= */
+.execution-statistics-container {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 18px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+}
+
+/* =============================================
+   HEADER
+   ============================================= */
+.statistics-header {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f1f3f6;
+}
+
+.statistics-header h5 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0d0d0d;
+  letter-spacing: 0.3px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statistics-header i {
+  color: #1a1a1a;
+  font-size: 1em;
+}
+
+/* Header Stats Badge */
+.header-stats {
+  margin-top: 0.75rem;
+}
+
+.header-stats .badge {
+  background: #1a1a1a !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  letter-spacing: 0.3px;
+  padding: 0.5rem 1rem !important;
+  border-radius: 12px !important;
+}
+
+.header-stats .badge.bg-primary {
+  background: #1a1a1a !important;
+}
+
+/* =============================================
+   SELECTOR DE RANGO TEMPORAL
+   ============================================= */
+.time-range-selector {
+  margin-bottom: 2rem;
+}
+
+.time-range-selector .btn-group {
+  width: 100%;
+  box-shadow: none;
+  border-radius: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #e1e4e8;
+  display: flex;
+  gap: 0;
+}
+
+.time-range-selector .btn {
+  flex: 1;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.4px;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: #6c757d;
+  transition: all 0.25s ease;
+  position: relative;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.time-range-selector .btn::after {
+  display: none;
+}
+
+.time-range-selector .btn:hover:not(.btn-primary) {
+  background: #fafbfc;
+  color: #1a1a1a;
+}
+
+.time-range-selector .btn:focus,
+.time-range-selector .btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.time-range-selector .btn-primary {
+  background: transparent !important;
+  color: #0d0d0d !important;
+  font-weight: 700;
+  border-bottom: 3px solid #1a1a1a !important;
+  box-shadow: none !important;
+}
+
+.time-range-selector .btn-outline-primary {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.time-range-selector .btn-outline-primary:focus {
+  box-shadow: none !important;
+}
+
+/* =============================================
+   TARJETAS DE RESUMEN
+   ============================================= */
+.summary-cards {
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  background: #fafbfc;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  min-height: 110px;
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.stat-card:hover {
+  background: #fff;
+  border-color: #d4d4d4;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Icono - pequeño en esquina superior derecha */
+.stat-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #1a1a1a !important;
+  color: #fff !important;
+  opacity: 0.9;
+}
+
+.stat-icon svg {
+  color: #fff !important;
+  stroke: #fff !important;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Contenido */
+.stat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-right: 1rem;
+  min-width: 0;
+}
+
+.stat-value {
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.02em;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: initial;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #6c757d;
+  letter-spacing: 0.2px;
+  line-height: 1.3;
+  margin: 0;
+  white-space: normal;
+  opacity: 0.85;
+}
+
+/* =============================================
+   CONTENEDORES DE GRÁFICOS
+   ============================================= */
+.chart-container {
+  background: #fafbfc;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  padding: 1.75rem;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.chart-container:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08);
+}
+
+/* Gráfica de peso por ejercicio - más alta */
+.chart-container-wide {
+  padding: 1.75rem;
+  overflow: visible !important;
+  position: relative;
+}
+
+.exercise-weight-chart-wrapper {
+  width: 100%;
+  position: relative;
+  overflow: visible !important;
+}
+
+.exercise-weight-chart-wrapper .recharts-wrapper {
+  overflow: visible !important;
+}
+
+.exercise-weight-chart-wrapper .recharts-surface {
+  overflow: visible !important;
+}
+
+.chart-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #d4d4d4;
+  letter-spacing: 0.2px;
+}
+
+.chart-title.mb-0 {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.chart-header-with-selector {
+  margin-bottom: 1.75rem;
+  padding-bottom: 0.875rem;
+  border-bottom: 2px solid #d4d4d4;
+}
+
+.chart-header-with-selector select {
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+/* =============================================
+   TOOLTIPS PERSONALIZADOS
+   ============================================= */
+.custom-tooltip {
+  background: #fff;
+  border: 1.5px solid #d4d4d4;
+  border-radius: 12px;
+  padding: 0.75rem 0.9rem;
+  box-shadow: 0 8px 24px -8px rgba(0,0,0,0.2), 0 4px 12px rgba(0,0,0,0.15);
+  max-width: 220px;
+  min-width: 180px;
+  width: max-content;
+  position: relative;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.custom-tooltip .label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0d0d0d;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e8e8e8;
+  letter-spacing: 0.2px;
+}
+
+.custom-tooltip p {
+  margin: 0.35rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.custom-tooltip p strong {
+  color: #1a1a1a;
+  font-weight: 800;
+}
+
+/* Asegurar que el tooltip de Recharts tenga z-index alto y se solape */
+.recharts-tooltip-wrapper {
+  z-index: 1000 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  outline: none !important;
+  transition: none !important;
+}
+
+.recharts-tooltip-cursor {
+  pointer-events: none;
+}
+
+.chart-container-wide .recharts-wrapper {
+  overflow: visible !important;
+  position: relative !important;
+}
+
+.chart-container-wide .recharts-surface {
+  overflow: visible !important;
+}
+
+/* Asegurar que todos los tooltips se solapen correctamente sin mover la gráfica */
+.recharts-default-tooltip {
+  z-index: 1001 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  outline: none !important;
+}
+
+/* =============================================
+   SIN DATOS
+   ============================================= */
+.no-data-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: #fafbfc;
+  border: 2px dashed #d4d4d4;
+  border-radius: 16px;
+}
+
+.no-data-message i {
+  font-size: 3rem;
+  color: #9ca3af;
+  opacity: 0.5;
+  margin-bottom: 1.25rem;
+}
+
+.no-data-message p {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6c757d;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =============================================
+   ESTILOS RECHARTS - MEJORADOS
+   ============================================= */
+
+/* Grid más sutil */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #e8e8e8;
+  stroke-opacity: 0.5;
+  stroke-dasharray: 4 4;
+}
+
+/* Ejes */
+.recharts-cartesian-axis-tick-value {
+  fill: #6c757d;
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.1px;
+}
+
+/* Barras con estilo minimalista */
+.recharts-bar-rectangle {
+  transition: opacity 0.2s ease;
+}
+
+.recharts-bar-rectangle:hover {
+  opacity: 0.8;
+}
+
+/* Color de barras por defecto - tonalidad oscura */
+.recharts-bar {
+  fill: #1a1a1a;
+}
+
+/*
+  Recharts - estilos por defecto
+  Nota: se limitan a gráficos "no-wide" para no sobrescribir los colores por serie
+  del gráfico multi-ejercicio (Peso por Ejercicio).
+*/
+
+/* Líneas con estilo limpio (solo charts no-wide) */
+.chart-container:not(.chart-container-wide) .recharts-line-curve {
+  stroke: #1a1a1a;
+  stroke-width: 2.5;
+}
+
+/* Puntos de la línea (solo charts no-wide) */
+.chart-container:not(.chart-container-wide) .recharts-dot {
+  fill: #1a1a1a;
+  stroke: #fff;
+  stroke-width: 2;
+  transition: all 0.2s ease;
+}
+
+.chart-container:not(.chart-container-wide) .recharts-dot:hover {
+  fill: #0d0d0d;
+  r: 5;
+}
+
+.chart-container:not(.chart-container-wide) .recharts-active-dot {
+  fill: #0d0d0d;
+  stroke: #fff;
+  stroke-width: 2.5;
+}
+
+/* Leyenda */
+.recharts-legend-wrapper {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid #e8e8e8;
+}
+
+.recharts-legend-item-text {
+  color: #1a1a1a !important;
+  font-weight: 500 !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0.2px;
+}
+
+/* =============================================
+   MEJORAS VISUALES ADICIONALES
+   ============================================= */
+
+/* Espaciado entre cards de estadísticas */
+.summary-cards .row {
+  row-gap: 1.25rem;
+}
+
+/* Separación entre gráficos */
+.chart-container.mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+/* Hover suave en elementos interactivos */
+.recharts-bar-rectangle:hover,
+.recharts-dot:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+/* Línea activa más visible */
+.recharts-line-curve:hover {
+  stroke-width: 4;
+}
+
+/* =============================================
+   RESPONSIVE - RANGO INTERMEDIO (1000px - 1200px)
+   Solución para deformación de stat cards
+   ============================================= */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .execution-statistics-container {
+    padding: 1.6rem;
+  }
+
+  /* Grid de 2 columnas en lugar de 4 */
+  .summary-cards .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-bottom: 1.25rem;
+  }
+
+  .summary-cards .row {
+    row-gap: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  .stat-card {
+    padding: 1.35rem;
+    min-height: 105px;
+  }
+
+  .stat-icon {
+    width: 30px;
+    height: 30px;
+    top: 0.9rem;
+    right: 0.9rem;
+  }
+
+  .stat-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .stat-content {
+    padding-right: 1rem;
+    gap: 0.45rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .stat-value {
+    font-size: clamp(1.5rem, 3.5vw, 1.85rem);
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .chart-container {
+    padding: 1.6rem;
+  }
+
+  .chart-title {
+    font-size: 0.92rem;
+    margin-bottom: 1.35rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE - TABLETS
+   ============================================= */
+@media (max-width: 991.98px) {
+  .execution-statistics-container {
+    padding: 1.75rem;
+  }
+
+  .statistics-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.85rem;
+  }
+
+  .statistics-header h5 {
+    font-size: 1.15rem;
+  }
+
+  .time-range-selector {
+    margin-bottom: 1.75rem;
+  }
+
+  .summary-cards {
+    margin-bottom: 2rem;
+  }
+
+  .summary-cards .row {
+    row-gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.25rem;
+    min-height: 100px;
+  }
+
+  .stat-icon {
+    width: 28px;
+    height: 28px;
+    top: 0.85rem;
+    right: 0.85rem;
+  }
+
+  .stat-icon svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .stat-content {
+    padding-right: 1rem;
+    gap: 0.45rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+  }
+
+  .chart-container {
+    padding: 1.5rem;
+  }
+
+  .chart-title {
+    font-size: 0.9rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE - MÓVILES
+   ============================================= */
+@media (max-width: 767.98px) {
+  .execution-statistics-container {
+    padding: 1.5rem;
+  }
+
+  .statistics-header {
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .statistics-header h5 {
+    font-size: 1.05rem;
+  }
+
+  .time-range-selector {
+    margin-bottom: 1.5rem;
+  }
+
+  .time-range-selector .btn {
+    font-size: 0.8rem;
+    padding: 0.65rem 0.75rem;
+    letter-spacing: 0.2px;
+  }
+
+  .summary-cards {
+    margin-bottom: 1.75rem;
+  }
+
+  .summary-cards .row {
+    row-gap: 0.85rem;
+  }
+
+  /* Cards ocupan 2 columnas (50% cada una) en móvil */
+  .summary-cards .col-md-3 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    min-height: 90px;
+  }
+
+  .stat-icon {
+    width: 26px;
+    height: 26px;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .stat-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .stat-content {
+    padding-right: 0.85rem;
+    gap: 0.4rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.68rem;
+    line-height: 1.25;
+  }
+
+  .chart-container {
+    padding: 1.25rem;
+  }
+
+  .chart-container.mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .chart-title {
+    font-size: 0.875rem;
+    margin-bottom: 1.15rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .custom-tooltip {
+    padding: 0.7rem 0.85rem;
+    min-width: 140px;
+  }
+
+  .custom-tooltip .label {
+    font-size: 0.8rem;
+    margin-bottom: 0.45rem;
+    padding-bottom: 0.45rem;
+  }
+
+  .custom-tooltip p {
+    font-size: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .no-data-message {
+    padding: 3.25rem 1.75rem;
+  }
+
+  .no-data-message i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .no-data-message p {
+    font-size: 0.9rem;
+  }
+
+  /* Reducir tamaño de fuentes en gráficos */
+  .recharts-cartesian-axis-tick-value {
+    font-size: 0.7rem;
+  }
+
+  .recharts-legend-item-text {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* =============================================
+   RESPONSIVE - PANTALLAS PEQUEÑAS
+   ============================================= */
+@media (max-width: 575.98px) {
+  .execution-statistics-container {
+    padding: 1.25rem;
+  }
+
+  .time-range-selector .btn {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.5rem;
+  }
+
+  .summary-cards .row {
+    row-gap: 0.75rem;
+  }
+
+  /* Cards ocupan todo el ancho en pantallas muy pequeñas */
+  .summary-cards .col-md-3 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    min-height: 85px;
+  }
+
+  .stat-icon {
+    width: 24px;
+    height: 24px;
+    top: 0.65rem;
+    right: 0.65rem;
+  }
+
+  .stat-icon svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .stat-content {
+    padding-right: 0.75rem;
+    gap: 0.35rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .stat-value {
+    font-size: 1.4rem;
+    line-height: 1.1;
+  }
+
+  .stat-label {
+    font-size: 0.66rem;
+    line-height: 1.2;
+  }
+
+  .chart-container {
+    padding: 1rem;
+  }
+
+  /* Scroll horizontal en gráficos */
+  .chart-container .recharts-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+
+  .recharts-responsive-container {
+    min-width: 380px;
+  }
+
+  /* Ocultar leyenda en móviles muy pequeños */
+  .recharts-legend-wrapper {
+    display: none;
+  }
+}
+
+/* =============================================
+   ACCESIBILIDAD
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+.time-range-selector .btn:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.stat-card:focus-visible {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+/* =============================================
+   ANIMACIONES SUAVES DE ENTRADA
+   ============================================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stat-card:nth-child(1) { animation-delay: 0.05s; }
+.stat-card:nth-child(2) { animation-delay: 0.1s; }
+.stat-card:nth-child(3) { animation-delay: 0.15s; }
+.stat-card:nth-child(4) { animation-delay: 0.2s; }
+
+/* Desactivar animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card,
+  .chart-container {
+    animation: none !important;
+  }
+}
+
+/* =============================================
+   MEJORAS DE CONTRASTE Y LEGIBILIDAD
+   ============================================= */
+
+.stat-card:hover .stat-label {
+  opacity: 1;
+}
+
+/* =============================================
+   OPTIMIZACIONES PARA IMPRESIÓN
+   ============================================= */
+@media print {
+  .execution-statistics-container {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .stat-card {
+    page-break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .chart-container {
+    page-break-inside: avoid;
+    box-shadow: none;
+  }
+
+  .time-range-selector {
+    display: none;
+  }
+}
+

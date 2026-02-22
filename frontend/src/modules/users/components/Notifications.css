@@ -1,0 +1,518 @@
+/* =============================================
+   VARIABLES DE DISEÑO - Coherente con el resto de la app
+   ============================================= */
+:root {
+    --ntf-text-primary: #111827;
+    --ntf-text-secondary: #6b7280;
+    --ntf-text-tertiary: #9ca3af;
+    --ntf-bg-white: #ffffff;
+    --ntf-bg-hover: #f9fafb;
+    --ntf-bg-unread: #eff6ff;
+    --ntf-border: #e5e7eb;
+    --ntf-border-light: #f3f4f6;
+    --ntf-primary: #3b82f6;
+    --ntf-danger: #ef4444;
+    --ntf-success: #10b981;
+    --ntf-radius-sm: 12px;
+    --ntf-radius-md: 14px;
+    --ntf-radius-lg: 16px;
+    --ntf-radius-xl: 20px;
+    --ntf-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ntf-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --ntf-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ntf-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* =============================================
+   CONTENEDOR PRINCIPAL
+   ============================================= */
+.ntf-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* =============================================
+   BOTÓN DE CAMPANA (ya estaba bien)
+   ============================================= */
+.ntf-bell-btn {
+    appearance: none;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    position: relative;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--ntf-radius-md);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.4);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ntf-bell-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.5);
+}
+
+.ntf-bell-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+}
+
+.ntf-bell-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+/* Icono de campana */
+.ntf-bell {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    stroke: currentColor;
+    display: block;
+    transition: transform 0.25s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.ntf-bell-btn:hover .ntf-bell {
+    transform: rotate(-12deg) scale(1.08);
+    animation: bellRing 0.5s ease;
+}
+
+@keyframes bellRing {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+/* Badge de notificaciones */
+.ntf-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    background: linear-gradient(135deg, #ff3b5c, #ff6b6b);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 11px;
+    line-height: 20px;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 59, 92, 0.6), 0 0 0 2px #0b0c0d;
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); box-shadow: 0 2px 12px rgba(255, 59, 92, 0.8), 0 0 0 2px #0b0c0d; }
+}
+
+/* =============================================
+   PANEL DE NOTIFICACIONES - Mejorado
+   ============================================= */
+.ntf-panel {
+    position: absolute;
+    right: 0; /* Alineado con el borde derecho del botón */
+    left: auto; /* Asegurar que no se aplique el estilo por defecto del dialog */
+    margin: 0; /* Resetear margen por defecto del dialog */
+    top: calc(100% + 10px); /* Debajo del botón con espacio */
+    width: 400px;
+    max-width: min(400px, calc(100vw - 2rem));
+    max-height: 560px;
+    z-index: 9999;
+    background: var(--ntf-bg-white);
+    color: var(--ntf-text-primary);
+    border: 1px solid var(--ntf-border);
+    border-radius: var(--ntf-radius-xl);
+    box-shadow: var(--ntf-shadow-xl);
+    overflow: hidden;
+    animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Flecha decorativa apuntando al botón */
+.ntf-panel::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    width: 12px;
+    height: 12px;
+    background: var(--ntf-bg-white);
+    border-left: 1px solid var(--ntf-border);
+    border-top: 1px solid var(--ntf-border);
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+/* =============================================
+   HEADER DEL PANEL - Más limpio
+   ============================================= */
+.ntf-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--ntf-border-light);
+    background: #fafbfc;
+    flex-shrink: 0;
+}
+
+.ntf-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.ntf-title-main {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ntf-text-primary);
+    letter-spacing: -0.01em;
+}
+
+.ntf-unread-count {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: var(--ntf-radius-sm);
+    font-size: 11px;
+    font-weight: 700;
+    border: 1px solid #dbeafe;
+}
+
+.ntf-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+/* Botón "Marcar todas" - Coherente con Button component */
+.ntf-markall {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: transparent;
+    border: 1.5px solid var(--ntf-border);
+    border-radius: var(--ntf-radius-sm);
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ntf-text-secondary);
+    transition: all 0.2s ease;
+}
+
+.ntf-markall:hover {
+    border-color: var(--ntf-text-primary);
+    color: var(--ntf-text-primary);
+    background: var(--ntf-bg-hover);
+    transform: translateY(-1px);
+}
+
+.ntf-markall:active {
+    transform: translateY(0);
+}
+
+.ntf-markall svg {
+    flex-shrink: 0;
+}
+
+/* =============================================
+   CONTENIDO DEL PANEL
+   ============================================= */
+.ntf-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0;
+}
+
+/* Scrollbar personalizado - más sutil */
+.ntf-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ntf-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ntf-content::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 3px;
+}
+
+.ntf-content::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* =============================================
+   ESTADOS VACÍO / ERROR / CARGANDO
+   ============================================= */
+.ntf-empty,
+.ntf-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+    gap: 10px;
+}
+
+.ntf-empty {
+    color: var(--ntf-text-tertiary);
+}
+
+.ntf-empty span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ntf-text-secondary);
+}
+
+.ntf-error {
+    color: var(--ntf-danger);
+}
+
+.ntf-error span {
+    font-size: 13px;
+}
+
+/* Spinner de carga */
+.ntf-spinner {
+    animation: ntf-spin 1s linear infinite;
+    color: var(--ntf-primary);
+}
+
+@keyframes ntf-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* =============================================
+   LISTA DE NOTIFICACIONES - MEJORADA
+   ============================================= */
+.ntf-list {
+    list-style: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.ntf-item {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 14px 12px 12px;
+    border-radius: var(--ntf-radius-md);
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    cursor: default;
+    background: var(--ntf-bg-white);
+    gap: 12px;
+}
+
+.ntf-item + .ntf-item {
+    margin-top: 6px;
+}
+
+.ntf-item:hover {
+    background: var(--ntf-bg-hover);
+    border-color: var(--ntf-border);
+}
+
+/* Notificación no leída - Más visible */
+.ntf-unread {
+    background: var(--ntf-bg-unread);
+    border-color: #dbeafe;
+    cursor: pointer;
+}
+
+.ntf-unread:hover {
+    background: #e0f2fe;
+    border-color: #bfdbfe;
+    box-shadow: var(--ntf-shadow-sm);
+}
+
+.ntf-unread:active {
+    transform: scale(0.99);
+}
+
+/* Punto indicador de no leído - POSICIÓN ARREGLADA */
+.ntf-dot {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ntf-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    animation: dotPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+@keyframes dotPulse {
+    0%, 100% { 
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+    50% { 
+        box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.25);
+    }
+}
+
+/* Contenido de la notificación - AJUSTADO */
+.ntf-item-content {
+    flex: 1;
+    min-width: 0;
+    /* Añadir padding-left cuando hay punto */
+}
+
+.ntf-unread .ntf-item-content {
+    padding-left: 20px;
+}
+
+.ntf-item-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--ntf-text-primary);
+    line-height: 1.4;
+}
+
+.ntf-message {
+    color: var(--ntf-text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.ntf-meta {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--ntf-text-tertiary);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.ntf-meta svg {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 480px) {
+    .ntf-panel {
+        width: calc(100vw - 2rem);
+        max-width: none;
+        left: 1rem;
+        right: 1rem;
+        animation: slideDownMobile 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideDownMobile {
+        from {
+            opacity: 0;
+            transform: translateY(-8px) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .ntf-panel::before {
+        display: none;
+    }
+
+    .ntf-panel-header {
+        padding: 14px 16px;
+    }
+
+    .ntf-title-main {
+        font-size: 15px;
+    }
+
+    .ntf-markall span {
+        display: none;
+    }
+
+    .ntf-markall {
+        padding: 7px 9px;
+    }
+
+    .ntf-list {
+        padding: 8px;
+    }
+
+    .ntf-item {
+        padding: 10px 12px 10px 10px;
+    }
+}
+
+/* =============================================
+   ACCESIBILIDAD
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    .ntf-bell-btn,
+    .ntf-bell,
+    .ntf-badge,
+    .ntf-panel,
+    .ntf-item,
+    .ntf-dot,
+    .ntf-spinner {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Estado de focus visible para navegación por teclado */
+.ntf-bell-btn:focus-visible,
+.ntf-markall:focus-visible {
+    outline: 2px solid var(--ntf-primary);
+    outline-offset: 2px;
+}
+
+.ntf-item:focus-visible {
+    outline: 2px solid var(--ntf-primary);
+    outline-offset: -2px;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Cursor pointer solo para no leídas */
+.ntf-item.ntf-unread {
+    cursor: pointer;
+}
+
+.ntf-item:not(.ntf-unread) {
+    cursor: default;
+}

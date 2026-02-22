@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: trainium-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /trainium
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /trainium
+            pathType: Prefix
+            backend:
+              service:
+                name: trainium
+                port:
+                  number: 8080

@@ -1,0 +1,930 @@
+/* =============================================
+   EXECUTION CALENDAR - Calendario de Rutinas
+   Estilos limpios coherentes con la aplicación
+   ============================================= */
+
+/* =============================================
+   CONTENEDOR PRINCIPAL
+   ============================================= */
+.execution-calendar-container {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 18px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 90px;
+  align-self: flex-start;
+  height: fit-content;
+}
+
+.execution-calendar-container.calendar-embedded {
+  position: static;
+  top: auto;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.calendar-embedded .calendar-wrapper {
+  margin-bottom: 0;
+}
+
+/* Responsive: desactivar sticky en tablets y móviles */
+@media (max-width: 991.98px) {
+  .execution-calendar-container {
+    position: relative;
+    top: auto;
+  }
+}
+
+/* =============================================
+   HEADER DEL CALENDARIO
+   ============================================= */
+.calendar-header {
+  margin-bottom: 1.25rem;
+}
+
+.calendar-header h5 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1f2328;
+  letter-spacing: 0.3px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.calendar-header h5 svg {
+  flex-shrink: 0;
+}
+
+.calendar-header i {
+  color: #111;
+  margin-right: 0;
+  font-size: 0.9em;
+  flex-shrink: 0;
+}
+
+.calendar-embedded .calendar-header {
+  margin-bottom: 0.75rem;
+}
+
+.calendar-embedded .calendar-header h5 {
+  font-size: 1rem;
+}
+
+/* =============================================
+   CALENDARIO - react-calendar
+   ============================================= */
+.calendar-wrapper {
+  margin-bottom: 1rem;
+}
+
+/* Sobrescribir estilos por defecto de react-calendar */
+.react-calendar {
+  border: none !important;
+  background: transparent !important;
+}
+
+.custom-calendar {
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  padding: 1rem 0;
+  background: transparent;
+  font-family: inherit;
+}
+
+/* Navegación */
+.custom-calendar .react-calendar__navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+  height: auto;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  color: #1f2328;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.55rem 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 34px;
+}
+
+.custom-calendar .react-calendar__navigation button:hover:not(:disabled) {
+  background: #fafbfc;
+  border-color: #111;
+  color: #111;
+}
+
+.custom-calendar .react-calendar__navigation button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.custom-calendar .react-calendar__navigation__label {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.custom-calendar .react-calendar__navigation__label:hover {
+  background-color: #f1f3f6;
+}
+
+/* Días de la semana */
+.custom-calendar .react-calendar__month-view__weekdays {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: #6c757d;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid #f1f3f6;
+  padding-bottom: 0.45rem;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays__weekday {
+  padding: 0.35rem 0;
+}
+
+.custom-calendar .react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+/* Grid de días */
+.custom-calendar .react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.3rem;
+}
+
+/* Días individuales */
+.custom-calendar .react-calendar__tile {
+  position: relative;
+  aspect-ratio: 1;
+  padding: 0.4rem;
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2328;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-calendar .react-calendar__tile:hover:not(:disabled) {
+  background: #f6f8fa;
+  border-color: #e1e4e8;
+}
+
+.custom-calendar .react-calendar__tile:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Día actual */
+.custom-calendar .react-calendar__tile--now {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  font-weight: 700;
+}
+
+/* Día seleccionado */
+.custom-calendar .react-calendar__tile--active {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111;
+  font-weight: 700;
+}
+
+.custom-calendar .react-calendar__tile--active:hover:not(:disabled) {
+  background: #000 !important;
+}
+
+/* Días de otros meses */
+.custom-calendar .react-calendar__month-view__days__day--neighboringMonth {
+  color: #9ca3af;
+  opacity: 0.5;
+}
+
+/* =============================================
+   DÍAS CON EJECUCIONES
+   ============================================= */
+.custom-calendar .has-executions {
+  background: #e8f5e9;
+  border-color: #66bb6a;
+  font-weight: 700;
+}
+
+.custom-calendar .has-executions:hover:not(:disabled) {
+  background: #c8e6c9;
+  border-color: #4caf50;
+}
+
+.custom-calendar .has-executions.react-calendar__tile--active {
+  background: #111 !important;
+  border-color: #111;
+}
+
+/* Badge con número de ejecuciones */
+.execution-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 3px;
+  background: #4caf50;
+  color: #fff;
+  border-radius: 7px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+}
+
+.custom-calendar .has-executions.react-calendar__tile--active .execution-badge {
+  background: #fff;
+  color: #111;
+}
+
+/* =============================================
+   VISTA DE AÑO (Meses)
+   ============================================= */
+.custom-calendar .react-calendar__year-view__months {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.custom-calendar .react-calendar__year-view__months__month {
+  aspect-ratio: 1.5;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2328;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-calendar .react-calendar__year-view__months__month:hover:not(:disabled) {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px -2px rgba(0,0,0,0.1);
+}
+
+.custom-calendar .react-calendar__year-view__months__month.react-calendar__tile--now {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  font-weight: 700;
+}
+
+.custom-calendar .react-calendar__year-view__months__month.react-calendar__tile--active {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111;
+  font-weight: 700;
+}
+
+/* =============================================
+   VISTA DE DÉCADA (Años)
+   ============================================= */
+.custom-calendar .react-calendar__decade-view__years {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.custom-calendar .react-calendar__decade-view__years__year {
+  aspect-ratio: 1.5;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2328;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-calendar .react-calendar__decade-view__years__year:hover:not(:disabled) {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px -2px rgba(0,0,0,0.1);
+}
+
+.custom-calendar .react-calendar__decade-view__years__year.react-calendar__tile--now {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  font-weight: 700;
+}
+
+.custom-calendar .react-calendar__decade-view__years__year.react-calendar__tile--active {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111;
+  font-weight: 700;
+}
+
+/* =============================================
+   VISTA DE SIGLO (Décadas)
+   ============================================= */
+.custom-calendar .react-calendar__century-view__decades {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+}
+
+.custom-calendar .react-calendar__century-view__decades__decade {
+  aspect-ratio: 1.5;
+  padding: 0.75rem;
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1f2328;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-calendar .react-calendar__century-view__decades__decade:hover:not(:disabled) {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px -2px rgba(0,0,0,0.1);
+}
+
+.custom-calendar .react-calendar__century-view__decades__decade.react-calendar__tile--now {
+  background: #f6f8fa;
+  border-color: #6c757d;
+  font-weight: 700;
+}
+
+.custom-calendar .react-calendar__century-view__decades__decade.react-calendar__tile--active {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111;
+  font-weight: 700;
+}
+
+/* =============================================
+   DETALLES DEL DÍA SELECCIONADO
+   ============================================= */
+.selected-day-details {
+  background: #fafbfc;
+  border: 1px solid #f1f3f6;
+  border-radius: 14px;
+  padding: 1rem;
+}
+
+.detail-header {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f2328;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid #f1f3f6;
+  letter-spacing: 0.2px;
+}
+
+/* Lista de ejecuciones */
+.executions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.execution-item {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.execution-item:hover {
+  border-color: #1a1a1a;
+  box-shadow: 0 2px 6px -2px rgba(0,0,0,0.12);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(-1px);
+}
+
+.execution-item .routine-name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f2328;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.2px;
+}
+
+.execution-item .execution-time {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #6c757d;
+  letter-spacing: 0.2px;
+}
+
+.execution-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.execution-stats .badge {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid #e1e4e8;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 8px;
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.2s ease;
+}
+
+.execution-stats .badge svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2;
+  flex-shrink: 0;
+}
+
+.execution-stats .badge.badge-duration {
+  border-color: #e1e4e8;
+}
+
+.execution-stats .badge.badge-exercises {
+  border-color: #e1e4e8;
+}
+
+.execution-stats .badge i {
+  font-size: 0.65em;
+  margin-right: 0.2rem;
+}
+
+/* Empty state */
+.selected-day-details .text-center {
+  padding: 1.5rem 1rem;
+}
+
+.selected-day-details .text-center i {
+  font-size: 2rem;
+  color: #6c757d;
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.selected-day-details .text-center p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+/* =============================================
+   LEYENDA DEL CALENDARIO
+   ============================================= */
+.calendar-legend {
+  padding-top: 0.85rem;
+  border-top: 1px solid #f1f3f6;
+}
+
+.calendar-legend small {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  font-size: 0.75rem;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-dot.has-data {
+  background: #4caf50;
+}
+
+.legend-dot.selected {
+  background: #111;
+}
+
+/* =============================================
+   RESPONSIVE - TABLETS
+   ============================================= */
+@media (max-width: 991.98px) {
+  .execution-calendar-container {
+    padding: 1.5rem;
+  }
+
+  .calendar-header {
+    margin-bottom: 1rem;
+  }
+
+  .calendar-header h5 {
+    font-size: 1.05rem;
+  }
+
+  .custom-calendar {
+    padding: 0.85rem 0;
+  }
+
+  .custom-calendar .react-calendar__navigation button {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.85rem;
+    min-width: 32px;
+  }
+
+  .custom-calendar .react-calendar__tile {
+    font-size: 0.8rem;
+    padding: 0.35rem;
+  }
+
+  .execution-badge {
+    min-width: 13px;
+    height: 13px;
+    line-height: 13px;
+    font-size: 0.575rem;
+  }
+
+  .selected-day-details {
+    padding: 0.9rem;
+  }
+
+  .detail-header {
+    font-size: 0.825rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .execution-item {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .execution-item .routine-name {
+    font-size: 0.825rem;
+  }
+
+  .execution-stats .badge {
+    font-size: 0.675rem;
+    padding: 0.225rem 0.5rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE - MÓVILES
+   ============================================= */
+@media (max-width: 767.98px) {
+  .execution-calendar-container {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .calendar-header {
+    margin-bottom: 0.85rem;
+  }
+
+  .calendar-header h5 {
+    font-size: 1rem;
+  }
+
+  .calendar-wrapper {
+    margin-bottom: 0.85rem;
+  }
+
+  .custom-calendar {
+    padding: 0.75rem 0;
+  }
+
+  .custom-calendar .react-calendar__navigation {
+    margin-bottom: 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .custom-calendar .react-calendar__navigation button {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.8rem;
+    min-width: 30px;
+    border-radius: 10px;
+  }
+
+  .custom-calendar .react-calendar__navigation__label {
+    font-size: 0.85rem;
+  }
+
+  .custom-calendar .react-calendar__month-view__weekdays {
+    font-size: 0.65rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .custom-calendar .react-calendar__month-view__days {
+    gap: 0.25rem;
+  }
+
+  .custom-calendar .react-calendar__tile {
+    font-size: 0.75rem;
+    padding: 0.3rem;
+    border-radius: 8px;
+  }
+
+  .execution-badge {
+    min-width: 11px;
+    height: 11px;
+    line-height: 11px;
+    font-size: 0.52rem;
+    top: 1px;
+    right: 1px;
+  }
+
+  .selected-day-details {
+    padding: 0.85rem;
+  }
+
+  .detail-header {
+    font-size: 0.8rem;
+    margin-bottom: 0.65rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .executions-list {
+    gap: 0.5rem;
+  }
+
+  .execution-item {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .execution-item .routine-name {
+    font-size: 0.8rem;
+  }
+
+  .execution-item .execution-time {
+    font-size: 0.7rem;
+  }
+
+  .execution-stats {
+    gap: 0.35rem;
+    margin-top: 0.35rem;
+  }
+
+  .execution-stats .badge {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 7px;
+    gap: 0.25rem;
+  }
+
+  .execution-stats .badge svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .calendar-legend {
+    padding-top: 0.75rem;
+  }
+
+  .calendar-legend small {
+    font-size: 0.7rem;
+    gap: 0.5rem;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .selected-day-details .text-center {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .selected-day-details .text-center i {
+    font-size: 1.75rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .selected-day-details .text-center p {
+    font-size: 0.8rem;
+  }
+}
+
+/* =============================================
+   RESPONSIVE - MÓVILES PEQUEÑOS
+   ============================================= */
+@media (max-width: 575.98px) {
+  .execution-calendar-container {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .calendar-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .calendar-header h5 {
+    font-size: 0.95rem;
+  }
+
+  .calendar-wrapper {
+    margin-bottom: 0.75rem;
+  }
+
+  .custom-calendar {
+    padding: 0.5rem 0;
+  }
+
+  .custom-calendar .react-calendar__navigation {
+    margin-bottom: 0.65rem;
+    gap: 0.25rem;
+  }
+
+  .custom-calendar .react-calendar__navigation button {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 28px;
+    border-radius: 8px;
+  }
+
+  .custom-calendar .react-calendar__navigation__label {
+    font-size: 0.8rem;
+  }
+
+  .custom-calendar .react-calendar__month-view__weekdays {
+    font-size: 0.6rem;
+    margin-bottom: 0.45rem;
+    padding-bottom: 0.35rem;
+    letter-spacing: 0.4px;
+  }
+
+  .custom-calendar .react-calendar__month-view__days {
+    gap: 0.2rem;
+  }
+
+  .custom-calendar .react-calendar__tile {
+    font-size: 0.7rem;
+    padding: 0.25rem;
+    border-radius: 7px;
+  }
+
+  .execution-badge {
+    min-width: 10px;
+    height: 10px;
+    line-height: 10px;
+    font-size: 0.48rem;
+    border-radius: 5px;
+  }
+
+  .selected-day-details {
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .detail-header {
+    font-size: 0.75rem;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.35rem;
+  }
+
+  .executions-list {
+    gap: 0.45rem;
+  }
+
+  .execution-item {
+    padding: 0.6rem 0.7rem;
+    border-radius: 8px;
+  }
+
+  .execution-item .routine-name {
+    font-size: 0.75rem;
+  .execution-stats {
+    gap: 0.3rem;
+    flex-wrap: wrap;
+  }
+
+  .execution-stats .badge {
+    font-size: 0.62rem;
+    padding: 0.22rem 0.45rem;
+    border-radius: 6px;
+    gap: 0.2rem;
+  }
+
+  .execution-stats .badge svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .execution-stats .badge i {
+    font-size: 0.6em;
+    margin-right: 0.15rem;
+  } border-radius: 7px;
+  }
+
+  .execution-stats .badge i {
+    font-size: 0.6em;
+    margin-right: 0.15rem;
+  }
+
+  .calendar-legend {
+    padding-top: 0.65rem;
+  }
+
+  .calendar-legend small {
+    font-size: 0.68rem;
+    gap: 0.45rem;
+  }
+
+  .legend-item {
+    gap: 0.3rem;
+  }
+
+  .legend-dot {
+    width: 7px;
+    height: 7px;
+  }
+
+  .selected-day-details .text-center {
+    padding: 1rem 0.75rem;
+  }
+
+  .selected-day-details .text-center i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .selected-day-details .text-center p {
+    font-size: 0.75rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.custom-calendar .react-calendar__tile:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+  z-index: 3;
+}
+
+.custom-calendar .react-calendar__navigation button:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}

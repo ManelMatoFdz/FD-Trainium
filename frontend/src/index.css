@@ -1,0 +1,1980 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+/* === Global Responsive Margins === */
+/* Desde 1200px (menú hamburguesa activo) hasta 992px */
+@media (max-width: 1199.98px) {
+
+  .container,
+  .container-fluid,
+  .routine-page-wrapper.container,
+  .routine-table-card,
+  .routine-search-modern,
+  .routine-stats-page,
+  .execution-statistics-container,
+  .trainium-table-card {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+
+  .container,
+  .container-fluid,
+  .routine-page-wrapper.container,
+  .routine-table-card,
+  .routine-search-modern,
+  .routine-stats-page,
+  .execution-statistics-container,
+  .trainium-table-card {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+
+  .container,
+  .container-fluid,
+  .routine-page-wrapper.container,
+  .routine-stats-page.container,
+  .execution-statistics-container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
+
+/* === User Profile Pages Consistent Spacing === */
+.signup-container.py-5,
+.container.py-5 {
+  padding-top: 1rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.navbar-collapse {
+  text-align: center;
+}
+
+.form-group>label>span {
+  font-weight: bold;
+}
+
+#page-header {
+  background-color: #f0f0f0;
+  padding: 1em;
+  position: relative;
+  text-align: center;
+}
+
+#login {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+
+/* --- Etiquetas flotantes estilo Material para formularios --- */
+.md-input {
+  position: relative;
+}
+
+.md-input .md-control {
+  border-radius: 8px;
+  padding: 1.25rem 0.75rem 0.5rem 0.75rem;
+  /* espacio superior para la etiqueta */
+  width: 100%;
+  /* ocupar todo el ancho disponible */
+}
+
+.md-input label {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  color: #6c757d;
+  /* text-muted */
+  background: transparent;
+  transform-origin: left top;
+  transition: all 0.15s ease-in-out;
+  pointer-events: none;
+}
+
+.md-input .md-control::placeholder {
+  color: transparent;
+}
+
+.md-input .md-control:focus+label,
+.md-input .md-control:not(:placeholder-shown)+label {
+  transform: translateY(-1.3rem) scale(0.9);
+  background: #fff;
+  padding: 0 0.25rem;
+  color: #000000;
+  /* primario */
+}
+
+/* resalta el foco en inputs */
+.md-input .md-control:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* Ajustes pequeños */
+.card .card-header {
+  font-weight: 800;
+}
+
+.btn {
+  border-radius: 8px;
+}
+
+.signup-container {
+  min-height: 100vh;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.signup-container .card {
+  border-radius: 16px;
+  overflow: hidden;
+  /* asegura continuidad en las esquinas inferiores */
+}
+
+.signup-container .card-header {
+  background: transparent;
+  border-bottom: 0;
+  padding: 1.25rem 1.5rem;
+  padding-bottom: 0;
+  font-size: 1.75rem;
+  text-align: center;
+  /* centrado del título */
+  font-weight: 700;
+  /* más presencia */
+  letter-spacing: 0.2px;
+  /* sutil mejora tipográfica */
+}
+
+.signup-container .card-body {
+  padding: 2rem 1.5rem;
+}
+
+.signup-container .card-footer {
+  background: transparent;
+}
+
+/* botón ancho completo dentro del contenido */
+.signup-submit-btn {
+  width: 100%;
+  /* mantiene el radio por defecto de .btn */
+}
+
+/* grupo de rol en forma de pastilla */
+.role-toggle {
+  display: inline-flex;
+}
+
+.role-toggle .btn {
+  min-width: 120px;
+  margin: 0;
+  border-radius: 0 !important;
+  /* vence .btn { border-radius: 8px; } */
+}
+
+/* Pegados: evitar doble borde entre botones */
+.role-toggle .btn+.btn {
+  margin-left: -1px;
+  border-left: 0;
+}
+
+/* Usuario: redondeado sólo a la izquierda, recto por la derecha */
+.role-toggle .btn:first-child {
+  border-top-left-radius: 999px !important;
+  border-bottom-left-radius: 999px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* Entrenador: redondeado sólo a la derecha, recto por la izquierda */
+.role-toggle .btn:last-child {
+  border-top-right-radius: 999px !important;
+  border-bottom-right-radius: 999px !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+/* Toggle rol unido estilo pill */
+.role-toggle-group {
+  display: inline-flex;
+}
+
+.role-toggle-group .btn-role {
+  border-radius: 0;
+  position: relative;
+  margin: 0;
+}
+
+.role-toggle-group .btn-role:first-of-type {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.role-toggle-group .btn-role:last-of-type {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+  margin-left: -1px;
+}
+
+.role-toggle-group .btn-role-active {
+  z-index: 1;
+}
+
+.role-toggle-group .btn-role:not(.btn-role-active)+.btn-role {
+  margin-left: -1px;
+}
+
+.role-toggle-group .btn-role:focus {
+  z-index: 2;
+}
+
+.role-toggle-group .btn-role-active {
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, .5), 0 0 0 1px #000;
+}
+
+/* Ajuste específico del Login: menor altura */
+.login-container {
+  min-height: auto;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Aumento sutil de altura de inputs solo en pantallas de auth */
+.signup-container .md-input .md-control,
+.login-container .md-input .md-control {
+  padding-top: 2rem;
+  /* antes 1.25rem */
+  padding-bottom: 1rem;
+  /* antes 0.5rem */
+}
+
+/* ========= Estilos pantallas de Rutinas ========= */
+:root {
+  --routine-bg: #f8f9fb;
+  --routine-accent: #0d6efd;
+  --routine-accent-soft: rgba(13, 110, 253, 0.15);
+  --routine-border: #e3e6ea;
+  --routine-chip-bg: #ffffff;
+  --routine-chip-border: #d4d9e1;
+  --routine-chip-hover: #eef2f7;
+  --routine-table-head: #f1f3f6;
+  --routine-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+}
+
+.routine-page-wrapper {
+  padding: 1rem 0 2.5rem;
+}
+
+.routine-page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.routine-page-title {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  margin: 0;
+}
+
+/* Buscador */
+.routine-search-box {
+  background: #fff;
+  border: 1px solid var(--routine-border);
+  border-radius: 14px;
+  padding: 1rem 1rem .75rem;
+  box-shadow: var(--routine-shadow);
+}
+
+.routine-search-box .form-control,
+.routine-search-box .form-select {
+  min-width: 165px;
+}
+
+.routine-search-box .btn {
+  align-self: stretch;
+}
+
+/* ===== Mejora buscador rutinas (palette negro + blanco) ===== */
+.routine-search-modern {
+  background: #fff;
+  border: 1px solid #dcdfe3;
+  border-radius: 18px;
+  padding: 1rem 1.15rem;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .08), 0 2px 4px -2px rgba(0, 0, 0, .05);
+}
+
+.routine-search-modern .routine-filters {
+  gap: .75rem;
+}
+
+.routine-search-modern .routine-filters>* {
+  flex: 1 1 auto;
+}
+
+.routine-search-modern .form-control,
+.routine-search-modern .form-select {
+  height: 48px;
+  padding: 0 1rem;
+  border: 1px solid #cfd3d8;
+  background: #fff;
+  color: #212529;
+  font-weight: 500;
+  border-radius: 14px;
+  transition: border-color .15s, box-shadow .15s, background-color .25s;
+}
+
+.routine-search-modern .form-control:focus,
+.routine-search-modern .form-select:focus {
+  border-color: #212529;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .15);
+}
+
+.routine-search-modern input::placeholder {
+  color: #6c757d;
+  font-weight: 400;
+}
+
+.routine-search-modern .btn-search-clear {
+  height: 48px;
+  padding: 0 1.25rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Variante de botón oscuro suave */
+.btn-dark-soft {
+  background: #212529;
+  color: #fff;
+  border: 1px solid #212529;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.btn-dark-soft:hover {
+  background: #14171a;
+  border-color: #14171a;
+}
+
+.btn-dark-soft:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+}
+
+.btn-outline-dark-soft {
+  background: #fff;
+  color: #212529;
+  border: 1px solid #212529;
+}
+
+.btn-outline-dark-soft:hover {
+  background: #212529;
+  color: #fff;
+}
+
+.btn-outline-dark-soft:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .25);
+}
+
+/* Tabla */
+.routine-table-card {
+  background: #fff;
+  border: 1px solid var(--routine-border);
+  border-radius: 18px;
+  box-shadow: var(--routine-shadow);
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.routine-table-card table {
+  margin: 0;
+}
+
+.routine-table-card thead th {
+  background: var(--routine-table-head);
+  font-weight: 600;
+  border-bottom: 1px solid var(--routine-border);
+}
+
+.routine-table-card tbody tr {
+  transition: background-color .15s;
+}
+
+.routine-table-card tbody tr:hover {
+  background: #f5f8fc;
+}
+
+.routine-actions .btn {
+  border-radius: 30px;
+  padding: .35rem .85rem;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+}
+
+.routine-actions .btn i {
+  font-size: .7rem;
+}
+
+/* ===== Tabla moderna de rutinas ===== */
+.routine-table-modern {
+  --tbl-border: #e1e4e8;
+  --tbl-head-bg: #fafbfc;
+  --tbl-row-hover: #f6f8fa;
+  --tbl-text: #1f2328;
+  color: var(--tbl-text);
+  --tbl-row-radius: 14px;
+}
+
+.routine-table-modern thead th {
+  background: var(--tbl-head-bg);
+  border-top: 1px solid var(--tbl-border);
+  border-bottom: 2px solid var(--tbl-border) !important;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: #555;
+  font-weight: 600;
+}
+
+.routine-table-modern tbody td {
+  border-top: 1px solid var(--tbl-border);
+}
+
+.routine-table-modern tbody tr {
+  transition: background-color .18s, box-shadow .18s;
+}
+
+.routine-table-modern tbody tr:hover {
+  background: var(--tbl-row-hover);
+}
+
+.routine-table-modern a {
+  color: #212529;
+  font-weight: 600;
+}
+
+.routine-table-modern a:hover {
+  text-decoration: underline;
+}
+
+.routine-table-modern .routine-actions .btn {
+  font-size: .62rem;
+  letter-spacing: .7px;
+  font-weight: 700;
+  border: 1px solid #212529;
+  background: #fff;
+  color: #212529;
+}
+
+.routine-table-modern .routine-actions .btn:hover {
+  background: #212529;
+  color: #fff;
+}
+
+.routine-table-modern .routine-actions .btn.btn-outline-danger {
+  border-color: #b02a37;
+  color: #b02a37;
+}
+
+.routine-table-modern .routine-actions .btn.btn-outline-danger:hover {
+  background: #b02a37;
+  color: #fff;
+}
+
+/* Formulario rutinas */
+.routine-form-card {
+  border: 1px solid var(--routine-border);
+  border-radius: 22px;
+  box-shadow: var(--routine-shadow);
+  background: #fff;
+}
+
+.routine-form-card .card-header {
+  background: linear-gradient(135deg, #ffffff, #f3f6fa);
+  border-bottom: 1px solid var(--routine-border);
+  font-weight: 600;
+  letter-spacing: .5px;
+}
+
+.routine-form-card .card-body {
+  background: var(--routine-bg);
+}
+
+.routine-form-card .form-group label {
+  font-weight: 600;
+}
+
+.routine-form-card .badge {
+  font-size: .7rem;
+}
+
+/* ===== Botón Nueva Rutina (estilo moderno oscuro) ===== */
+.btn-new-routine {
+  position: relative;
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  font-weight: 600;
+  letter-spacing: .4px;
+  padding: .65rem 1.25rem .65rem 2.6rem;
+  border-radius: 16px;
+  line-height: 1.1;
+  overflow: hidden;
+  transition: background .25s, border-color .25s, box-shadow .25s, transform .25s;
+}
+
+.btn-new-routine:before {
+  content: '+';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.15rem;
+  font-weight: 400;
+}
+
+.btn-new-routine:hover {
+  background: #000;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .4), 0 2px 5px -2px rgba(0, 0, 0, .25);
+  transform: translateY(-2px);
+}
+
+.btn-new-routine:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .35);
+}
+
+.btn-new-routine:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .4);
+}
+
+/* Botón de navegación secundario (outline) */
+.btn-nav-secondary {
+  position: relative;
+  background: transparent;
+  color: #111;
+  border: 1px solid #111;
+  font-weight: 600;
+  letter-spacing: .4px;
+  padding: .65rem 1.25rem;
+  border-radius: 16px;
+  line-height: 1.1;
+  transition: background .25s, border-color .25s, box-shadow .25s, transform .25s;
+}
+
+.btn-nav-secondary:hover {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .4), 0 2px 5px -2px rgba(0, 0, 0, .25);
+  transform: translateY(-2px);
+}
+
+.btn-nav-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .35);
+}
+
+.btn-nav-secondary:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .4);
+}
+
+/* ===== Rediseño formulario rutina ===== */
+.routine-form-modern.routine-form-card {
+  border-radius: 28px;
+  border: 1px solid #dadfe3;
+  background: #fff;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, .12), 0 3px 8px -4px rgba(0, 0, 0, .06);
+}
+
+.routine-form-modern .card-header {
+  background: #fff;
+  border-bottom: 1px solid #eceff2;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 1.25rem 1.75rem;
+}
+
+.routine-form-modern .card-body {
+  background: #fcfcfd;
+  padding: 2rem 1.75rem 2.25rem;
+}
+
+.routine-form-modern .form-group {
+  position: relative;
+}
+
+.routine-form-modern label.col-form-label {
+  font-weight: 600;
+  color: #15171a;
+  letter-spacing: .3px;
+}
+
+.routine-form-modern .form-control,
+.routine-form-modern .custom-select {
+  border: 1px solid #cfd3d8;
+  border-radius: 14px;
+  padding: .75rem 1rem;
+  font-weight: 500;
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s, background-color .3s;
+}
+
+.routine-form-modern .form-control:focus,
+.routine-form-modern .custom-select:focus {
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .2);
+}
+
+.routine-form-modern textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Bloques de secciones suaves */
+.routine-form-modern .form-group:not(:last-of-type) {
+  border-bottom: 1px dashed #eceff2;
+  padding-bottom: 1.25rem;
+}
+
+.routine-form-modern .form-group+.form-group {
+  margin-top: 1.5rem;
+}
+
+/* Estrellas dificultad (neutro + dorado suave al seleccionar) */
+.routine-form-modern .rating-stars i {
+  font-size: 1.5rem !important;
+  margin-right: .45rem;
+  color: #bbb;
+  text-shadow: none;
+}
+
+.routine-form-modern .rating-stars i.fas.fa-star {
+  color: #f8c94a;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+}
+
+.routine-form-modern .rating-stars i:hover {
+  transform: scale(1.15) rotate(-3deg);
+}
+
+/* Chips ejercicios adaptados */
+.routine-form-modern .exercise-chip {
+  background: #fff;
+  border: 1px solid #d5dadd;
+  font-weight: 600;
+  color: #222;
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, .15);
+}
+
+.routine-form-modern .exercise-chip:hover {
+  background: #f2f4f6;
+}
+
+.routine-form-modern .exercise-chip button {
+  color: #555 !important;
+}
+
+.routine-form-modern .exercise-chip button:hover {
+  color: #000 !important;
+}
+
+/* Botones formulario */
+.btn-dark-pure {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  font-weight: 600;
+  letter-spacing: .4px;
+  border-radius: 14px;
+  padding: .75rem 1.5rem;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .4);
+  transition: background .25s, box-shadow .25s, transform .25s;
+}
+
+.btn-dark-pure:hover {
+  background: #111;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .45);
+  transform: translateY(-2px);
+}
+
+.btn-dark-pure:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .35);
+}
+
+.btn-dark-pure:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+}
+
+.btn-outline-dark-pure {
+  background: #fff;
+  color: #111;
+  border: 1px solid #222;
+  font-weight: 600;
+  border-radius: 14px;
+  padding: .75rem 1.5rem;
+  transition: background .25s, color .25s, box-shadow .25s;
+}
+
+.btn-outline-dark-pure:hover {
+  background: #111;
+  color: #fff;
+}
+
+.btn-outline-dark-pure:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .3);
+}
+
+/* Botón ghost para añadir ejercicios */
+.btn-ghost-add {
+  background: #fff;
+  border: 1px dashed #999;
+  color: #1b1d20;
+  font-weight: 600;
+  padding: .6rem 1rem;
+  border-radius: 14px;
+  transition: border-color .25s, background-color .25s, color .25s;
+}
+
+.btn-ghost-add i {
+  margin-right: .5rem;
+}
+
+.btn-ghost-add:hover {
+  background: #f3f4f6;
+  border-color: #111;
+}
+
+/* Modal ejercicios en modo oscuro neutro */
+.exercise-modal .modal-header {
+  background: #fff;
+}
+
+.exercise-modal .modal-title {
+  font-weight: 600;
+  letter-spacing: .4px;
+}
+
+.exercise-modal .modal-content {
+  background: #fff;
+  border: 1px solid #d8dde1;
+  box-shadow: 0 14px 34px -10px rgba(0, 0, 0, .35), 0 6px 14px -6px rgba(0, 0, 0, .18);
+}
+
+.exercise-modal .modal-body {
+  background: #fafbfc;
+}
+
+.exercise-modal .modal-footer {
+  background: #fff;
+}
+
+.exercise-modal .list-group-item {
+  background: #fff;
+}
+
+.exercise-modal .list-group-item.selected {
+  background: linear-gradient(90deg, rgba(0, 0, 0, .06), rgba(0, 0, 0, .03));
+}
+
+.exercise-modal .list-group-item:hover {
+  background: #f3f4f6;
+}
+
+.exercise-modal .custom-control-input:checked~.custom-control-label::before {
+  background: #000;
+  border-color: #000;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, .35);
+}
+
+/* Search bar del modal */
+.exercise-modal .input-group .form-control {
+  border-radius: 40px;
+  padding: .85rem 1.25rem;
+  border: 1px solid #c6ccd1;
+}
+
+.exercise-modal .input-group .form-control:focus {
+  border-color: #000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .25);
+}
+
+.exercise-modal .input-group .btn {
+  border-radius: 40px;
+}
+
+/* Mensajes de ayuda */
+.routine-form-modern small.form-text {
+  font-weight: 500;
+  color: #6b6f74;
+}
+
+/* Footer form alignment */
+.routine-form-modern .form-actions {
+  border-top: 1px solid #eceff2;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+}
+
+/* ===== Ajuste versión más compacta del formulario de rutina ===== */
+.routine-form-narrow {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .routine-form-narrow {
+    max-width: 100%;
+  }
+}
+
+.routine-form-modern .rf-field {
+  margin-bottom: 1.5rem;
+}
+
+.routine-form-modern .rf-label {
+  display: block;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .55px;
+  text-transform: uppercase;
+  margin-bottom: .45rem;
+  color: #343a40;
+}
+
+.routine-form-modern .rf-inline {
+  display: flex;
+  align-items: center;
+}
+
+.routine-form-modern .rating-stars {
+  margin-right: .75rem;
+}
+
+.routine-form-modern .rf-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.routine-form-modern .rf-col-6 {
+  flex: 1 1 320px;
+  min-width: 260px;
+}
+
+.routine-form-modern .rf-col-12 {
+  flex: 1 1 100%;
+}
+
+.routine-form-modern .rf-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.routine-form-modern .rf-chip-area {
+  min-height: 50px;
+}
+
+.routine-form-modern .exercise-chip {
+  margin-right: .5rem;
+}
+
+@media (max-width: 576px) {
+  .routine-form-modern .rf-row {
+    gap: 1rem;
+  }
+
+  .routine-form-modern .rf-field {
+    margin-bottom: 1.1rem;
+  }
+
+  /* Compactar chips y truncado para evitar desbordes */
+  .rt-badge {
+    padding: .25rem .5rem;
+    font-size: .68rem;
+  }
+
+  .routine-table-modern .text-truncate {
+    max-width: 140px !important;
+  }
+}
+
+/* Ajustes compactación formulario rutina */
+.routine-form-modern.routine-form-card {
+  overflow: hidden;
+}
+
+.routine-form-modern .rf-row {
+  gap: 1.1rem;
+}
+
+.routine-form-modern .rf-field {
+  margin-bottom: 1rem;
+}
+
+/* Placeholder select categoría */
+.custom-select.select-placeholder {
+  color: #6c757d;
+}
+
+.custom-select.select-placeholder:focus {
+  color: #212529;
+}
+
+/* Asegurar opciones normales */
+.custom-select.select-placeholder option {
+  color: #212529;
+}
+
+/* Fix: evitar que el placeholder del select de categoría aparezca cortado */
+.routine-form-modern .custom-select {
+  height: 48px;
+  /* asegurar altura uniforme */
+  line-height: 1.25;
+  /* evitar clipping vertical */
+  padding-top: .6rem;
+  /* reajuste vertical */
+  padding-bottom: .6rem;
+  width: 100%;
+}
+
+.routine-form-modern .custom-select.select-placeholder {
+  /* hacer más legible el placeholder */
+  font-style: normal;
+  opacity: .95;
+}
+
+/* En algunos navegadores el texto puede bajar ligeramente: forzar alineación */
+.routine-form-modern .custom-select option {
+  line-height: 1.3;
+}
+
+/* Igualar altura de ciertos inputs al select (48px) */
+.routine-form-modern .form-control.h-eq {
+  height: 48px;
+  padding-top: .6rem;
+  padding-bottom: .6rem;
+}
+
+/* Panel de ejercicios seleccionados */
+.selected-exercises-panel {
+  background: #fff;
+  border: 1px solid #dcdfe3;
+  border-radius: 18px;
+  padding: 1rem 1.15rem 1rem;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, .08), 0 2px 4px -2px rgba(0, 0, 0, .04);
+  position: relative;
+}
+
+.selected-exercises-panel .sep-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .55rem;
+}
+
+.selected-exercises-panel .sep-title {
+  font-size: .7rem;
+  letter-spacing: .65px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+}
+
+.selected-exercises-panel .sep-title .badge-count {
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  font-size: .65rem;
+  padding: .35rem .55rem;
+  border-radius: 10px;
+  line-height: 1;
+}
+
+.selected-exercises-panel .selected-exercises-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.1rem;
+  max-height: 180px;
+  overflow-y: auto;
+  padding: .6rem .4rem .6rem 0;
+}
+
+.selected-exercises-panel .selected-exercises-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.selected-exercises-panel .selected-exercises-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.selected-exercises-panel .selected-exercises-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, .25);
+  border-radius: 20px;
+}
+
+.selected-exercises-panel .selected-exercises-list::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, .4);
+}
+
+.selected-exercises-panel .exercise-chip {
+  margin: 0 !important;
+  background: linear-gradient(145deg, #ffffff, #f6f7f8);
+  border: 1px solid #d2d6da;
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, .15);
+  font-weight: 600;
+  transition: transform .2s, border-color .2s, background-color .2s;
+}
+
+/* Refinar chips dentro del panel seleccionado: más aire y legibilidad */
+.selected-exercises-panel .exercise-chip {
+  padding: .6rem .15rem .6rem 1.05rem;
+  /* más espacio horizontal y vertical */
+  font-size: .9rem;
+  /* ligeramente mayor */
+  line-height: .8;
+  gap: .75rem;
+  /* separación entre texto y botón */
+  border-radius: 999px;
+  /* pill más claro */
+  letter-spacing: .25px;
+}
+
+.selected-exercises-panel .exercise-chip button {
+  margin-left: .15rem;
+}
+
+.selected-exercises-panel .exercise-chip i.fa-times {
+  font-size: .75rem;
+}
+
+/* Hover un poco más sutil ahora que hay más espacio */
+.selected-exercises-panel .exercise-chip:hover {
+  transform: translateY(-1px);
+}
+
+.clear-selected-btn {
+  --bs-btn-padding-y: .35rem;
+  --bs-btn-padding-x: .75rem;
+  --bs-btn-font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  border-radius: 10px;
+}
+
+/* Bloque de dificultad (estrellas) mejorado */
+.difficulty-box {
+  background: #fff;
+  border: 1px solid #dcdfe3;
+  border-radius: 18px;
+  padding: .75rem 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .08);
+  position: relative;
+}
+
+.difficulty-box:before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, .03), rgba(0, 0, 0, .015));
+}
+
+.difficulty-box .rating-stars i {
+  font-size: 1.55rem !important;
+  margin-right: .5rem;
+  transition: transform .18s, color .18s, text-shadow .25s;
+}
+
+.difficulty-box .rating-stars i:last-child {
+  margin-right: 0;
+}
+
+.difficulty-box .rating-stars i.fas.fa-star {
+  color: #f5c23a;
+  text-shadow: 0 3px 8px rgba(0, 0, 0, .18);
+}
+
+.difficulty-box .rating-stars i:hover {
+  transform: translateY(-3px) scale(1.18) rotate(-4deg);
+}
+
+.difficulty-box .difficulty-current {
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: #444;
+  background: #f3f4f6;
+  padding: .45rem .75rem;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.difficulty-box .difficulty-current.empty {
+  opacity: .6;
+  font-weight: 600;
+}
+
+.difficulty-box .difficulty-hint {
+  font-size: .6rem;
+  letter-spacing: .5px;
+  color: #777;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@media (max-width:576px) {
+  .difficulty-box {
+    flex-wrap: wrap;
+    gap: .65rem;
+  }
+
+  .difficulty-box .rating-stars i {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* ===== Ajustes de color para pantallas de autenticación (SignUp / Login) ===== */
+.auth-card-dark .card-header {
+  background: #fff;
+  border-bottom: 1px solid #eceff2;
+  font-weight: 700;
+  letter-spacing: .6px;
+  color: #111;
+}
+
+.auth-card-dark .auth-alt a {
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+  position: relative;
+}
+
+.auth-card-dark .auth-alt a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: #111;
+  opacity: 0;
+  transform: scaleX(.4);
+  transform-origin: left center;
+  transition: opacity .25s, transform .25s;
+}
+
+.auth-card-dark .auth-alt a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* Toggle rol oscuro */
+.role-toggle-dark .role-toggle-group {
+  display: inline-flex;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.role-toggle-dark .btn-role {
+  font-weight: 600;
+  letter-spacing: .4px;
+  border-radius: 0;
+  padding: .6rem 1.3rem;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  transition: background .25s, border-color .25s, color .25s, box-shadow .25s;
+  margin: 0;
+  position: relative;
+}
+
+/* Unir botones y dejar el interior recto (Usuario recto por la derecha; Entrenador recto por la izquierda) */
+.role-toggle-dark .btn-role+.btn-role {
+  margin-left: -1px;
+  border-left: 0;
+}
+
+.role-toggle-dark .btn-role:first-of-type {
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.role-toggle-dark .btn-role:last-of-type {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+.role-toggle-dark .btn-role-active {
+  z-index: 2;
+}
+
+.role-toggle-dark .btn-role-active {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, .45);
+}
+
+.role-toggle-dark .btn-role:not(.btn-role-active):hover {
+  background: #111;
+  color: #fff;
+}
+
+.role-toggle-dark .btn-role:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+}
+
+.role-toggle-dark .btn-role-active:hover {
+  background: #111;
+}
+
+/* Botón principal ancho estilo oscuro reutilizable */
+.btn-auth-primary {
+  background: #000;
+  color: #fff;
+  border: 1px solid #000;
+  font-weight: 600;
+  letter-spacing: .5px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px -4px rgba(0, 0, 0, .45);
+  transition: background .25s, box-shadow .25s, transform .25s;
+}
+
+.btn-auth-primary:hover {
+  background: #111;
+  transform: translateY(-2px);
+}
+
+.btn-auth-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .4);
+}
+
+.btn-auth-primary:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+}
+
+/* Inputs material en auth: asegurar contraste consistente */
+.signup-container .md-input .md-control,
+.login-container .md-input .md-control {
+  background: #fff;
+}
+
+.signup-container .md-input label,
+.login-container .md-input label {
+  font-weight: 600;
+}
+
+/* Ajustar spacing vertical menor entre filas en auth */
+.signup-container .form-row .mb-3 {
+  margin-bottom: 1.1rem !important;
+}
+
+/* Fix: asegurar que select tenga la misma altura que inputs en auth */
+.signup-container .md-input .form-select.md-control,
+.login-container .md-input .form-select.md-control {
+  padding-top: 1.25rem;
+  padding-bottom: 0.5rem;
+  height: auto;
+}
+
+/* Pequeño refinamiento del card */
+.signup-container .card.shadow-lg {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .25), 0 4px 12px -6px rgba(0, 0, 0, .18) !important;
+}
+
+/* ===== Fondo de pantalla completo para Login / SignUp ===== */
+.auth-bg {
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f5f5f5;
+  /* Nuevo: layout en columna y sin scroll */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* bloquea scroll dentro del wrapper */
+  position: relative;
+  /* para posicionar el botón de volver dentro */
+}
+
+/* Centrado responsivo del formulario en auth */
+.auth-container {
+  flex: 1 1 auto;
+  /* ocupa el alto disponible entre header/footer (si existieran) */
+  display: flex;
+  /* centro horizontal + vertical */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Desactivar scroll global cuando se aplique al body */
+body.no-scroll {
+  overflow: hidden !important;
+}
+
+/* ===== Footer en pantallas de autenticación ===== */
+.footer-auth footer p {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Ajustes del contenedor Bootstrap en auth para permitir centrado perfecto */
+.auth-bg .signup-container {
+  min-height: auto;
+  padding-top: 0 !important;
+  /* override .py-5 */
+  padding-bottom: 0 !important;
+  /* override .py-5 */
+}
+
+/* Botón "Inicio" en pantallas de autenticación */
+.auth-home {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+}
+
+.auth-home-btn {
+  font-weight: 700;
+  border-radius: 999px;
+  padding: .45rem .95rem;
+  background: rgba(0, 0, 0, .25);
+  border-color: rgba(255, 255, 255, .75) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, .75);
+  backdrop-filter: saturate(120%) blur(2px);
+  transition: background .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+
+.auth-home-btn:hover {
+  background: rgba(0, 0, 0, .38);
+  box-shadow: 0 10px 28px -12px rgba(0, 0, 0, .8);
+  transform: translateY(-1px);
+}
+
+.auth-home-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 16px -10px rgba(0, 0, 0, .75);
+}
+
+.auth-home-btn:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .35), 0 8px 24px -12px rgba(0, 0, 0, .75);
+}
+
+/* Compacto y circular en móviles (solo icono visible) */
+@media (max-width: 767.98px) {
+  .auth-home-btn {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+  }
+}
+
+/* Logo de marca como botón Home en pantallas de autenticación */
+.auth-brand {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 4;
+}
+
+.auth-brand-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  outline: none;
+}
+
+.auth-brand-link:focus {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .35);
+}
+
+.auth-brand-link:hover .brand-logo,
+.auth-brand-link:focus .brand-logo {
+  transform: scale(1.06) rotate(-3deg);
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, .7));
+}
+
+/* ===== RoutineSearch: trigger + panel con animación ===== */
+.rs-search {
+  position: relative;
+}
+
+.rs-filter-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .55rem 1.15rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px -10px rgba(0, 0, 0, .7);
+}
+
+.rs-filter-trigger:hover {
+  box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .7);
+}
+
+.rs-filter-trigger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35), 0 8px 24px -12px rgba(0, 0, 0, .75);
+}
+
+.rs-filter-trigger.active {
+  transform: translateY(-1px);
+}
+
+/* Panel colapsable con efecto "sale del botón" */
+.rs-filter-panel {
+  overflow: hidden;
+  transform-origin: top center;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px) scaleY(.98);
+  border-radius: 16px;
+  clip-path: inset(0 0 100% 0 round 16px);
+  transition: max-height .3s cubic-bezier(.2, .7, .3, 1), transform .3s cubic-bezier(.2, .7, .3, 1), opacity .24s ease, clip-path .3s cubic-bezier(.2, .7, .3, 1);
+}
+
+.rs-filter-panel.expanded {
+  max-height: 520px;
+  opacity: 1;
+  transform: translateY(0) scaleY(1);
+  clip-path: inset(0 0 0 0 round 16px);
+  margin-top: .6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rs-filter-panel {
+    transition: none;
+  }
+
+  .rs-filter-trigger {
+    transition: none;
+  }
+}
+
+/* ===== Botones de acción en tablas (coherentes con .btn-new-routine / .btn-filter-modern) ===== */
+.btn-action-dark {
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  padding: .4rem .8rem;
+  transition: background .25s, box-shadow .25s, transform .2s;
+}
+
+.btn-action-dark:hover {
+  background: #000;
+  box-shadow: 0 4px 12px -6px rgba(0, 0, 0, .55);
+  transform: translateY(-1px);
+}
+
+.btn-action-dark:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -4px rgba(0, 0, 0, .5);
+}
+
+.btn-action-dark:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .4);
+}
+
+/* Nuevo: botón ghost para acciones (Editar) */
+.btn-action-ghost {
+  background: transparent;
+  color: #212529;
+  border: 1px solid #212529;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  padding: .4rem .8rem;
+  transition: background .25s, color .25s, border-color .25s, box-shadow .25s, transform .2s;
+}
+
+.btn-action-ghost:hover {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+  box-shadow: 0 4px 12px -6px rgba(0, 0, 0, .5);
+  transform: translateY(-1px);
+}
+
+.btn-action-ghost:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -4px rgba(0, 0, 0, .45);
+}
+
+.btn-action-ghost:focus {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, .35);
+}
+
+.btn-action-ghost.btn-sm {
+  padding: .45rem .75rem;
+  line-height: 1;
+}
+
+/* Botón success para aprobar */
+.btn-action-success {
+  background: #fff;
+  color: #198754;
+  border: 1px solid #198754;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  padding: .4rem .8rem;
+  transition: background .25s, color .25s, box-shadow .25s, transform .2s, border-color .25s;
+}
+
+.btn-action-success:hover {
+  background: #198754;
+  color: #fff;
+  box-shadow: 0 4px 12px -6px rgba(25, 135, 84, .6);
+  transform: translateY(-1px);
+}
+
+.btn-action-success:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(25, 135, 84, .55);
+}
+
+.btn-action-success:focus {
+  box-shadow: 0 0 0 3px rgba(25, 135, 84, .35);
+}
+
+.btn-action-success.btn-sm {
+  padding: .45rem .75rem;
+  line-height: 1;
+}
+
+.btn-action-danger {
+  background: #fff;
+  color: #b02a37;
+  border: 1px solid #b02a37;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  padding: .4rem .8rem;
+  transition: background .25s, color .25s, box-shadow .25s, transform .2s, border-color .25s;
+}
+
+.btn-action-danger:hover {
+  background: #b02a37;
+  color: #fff;
+  box-shadow: 0 4px 12px -6px rgba(176, 42, 55, .6);
+  transform: translateY(-1px);
+}
+
+.btn-action-danger:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px -2px rgba(176, 42, 55, .55);
+}
+
+.btn-action-danger:focus {
+  box-shadow: 0 0 0 3px rgba(176, 42, 55, .35);
+}
+
+/* ===== Ajustes finos tabla moderna ===== */
+.routine-table-modern thead th {
+  padding: .9rem 1rem;
+}
+
+.routine-table-modern tbody td {
+  padding: .85rem 1rem;
+}
+
+.routine-table-modern tbody tr:hover {
+  background: rgba(0, 0, 0, .035);
+}
+
+/* ===== Rutinas tabla v2: filas separadas, bordes redondeados y chips ===== */
+/* Estructura de filas tipo "cards" dentro de la tabla */
+.routine-table-modern {
+  border-collapse: separate;
+  border-spacing: 0 .6rem;
+}
+
+/* Header como pieza continua con bordes laterales y radios visibles */
+.routine-table-modern thead th {
+  background: var(--tbl-head-bg);
+  border-top: 1px solid var(--tbl-border);
+  border-bottom: 2px solid var(--tbl-border) !important;
+}
+
+.routine-table-modern thead th:first-child {
+  border-left: 1px solid var(--tbl-border);
+  border-top-left-radius: 14px;
+}
+
+.routine-table-modern thead th:last-child {
+  border-right: 1px solid var(--tbl-border);
+  border-top-right-radius: 14px;
+}
+
+/* Celdas con fondo blanco y radios en extremos para efecto pill */
+.routine-table-modern tbody td {
+  background: #fff;
+  border-top: 1px solid var(--tbl-border);
+  border-bottom: 1px solid var(--tbl-border);
+  transition: background-color .18s ease, box-shadow .18s ease;
+}
+
+.routine-table-modern tbody td:first-child {
+  border-left: 1px solid var(--tbl-border);
+  border-top-left-radius: 14px;
+  border-bottom-left-radius: 14px;
+}
+
+.routine-table-modern tbody td:last-child {
+  border-right: 1px solid var(--tbl-border);
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+
+/* Hover con realce sutil del conjunto */
+.routine-table-modern tbody tr:hover td {
+  background: #fafbfc;
+  box-shadow: inset 0 0 0 9999px rgba(0, 0, 0, 0);
+}
+
+/* Ajuste del ID y textos truncados para consistencia */
+.routine-table-modern tbody td.small {
+  color: #6c757d;
+}
+
+.routine-table-modern .text-truncate {
+  max-width: 240px;
+}
+
+/* Chips neutrales y ghost para nivel y categoría */
+.rt-badge {
+  display: inline-block;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  background: #111;
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .4px;
+  box-shadow: 0 2px 6px -2px rgba(0, 0, 0, .35);
+}
+
+.rt-badge-ghost {
+  background: #fff;
+  color: #111;
+  border: 1px solid #cfd3d8;
+  box-shadow: 0 2px 6px -3px rgba(0, 0, 0, .08);
+}
+
+/* Acciones: separación y responsividad ligera */
+.routine-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+@media (max-width: 576px) {
+  .routine-actions {
+    gap: .4rem;
+  }
+}
+
+/* Alturas/espaciados de botones de acción para un look compacto consistente */
+.btn-action-dark.btn-sm,
+.btn-action-danger.btn-sm {
+  padding: .45rem .75rem;
+  line-height: 1;
+}
+
+.btn-action-dark i,
+.btn-action-danger i,
+.btn-action-ghost i {
+  font-size: .8rem;
+}
+
+/* Realce de fila activa al navegar con teclado (accesibilidad) */
+.routine-table-modern tbody tr:focus-within td {
+  outline: 2px solid rgba(0, 0, 0, .35);
+  outline-offset: -2px;
+  background: #f6f8fa;
+}
+
+/* Separadores horizontales suaves en el header para mayor jerarquía visual */
+.routine-table-modern thead th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.routine-table-modern thead th:last-child {
+  border-top-right-radius: 12px;
+}
+
+@media (max-width: 576px) {
+
+  /* Columna de acciones: ancho justo para 2 iconos */
+  .routine-table-modern thead th:nth-child(6),
+  .routine-table-modern tbody td:nth-child(6) {
+    width: 120px !important;
+  }
+
+  /* Reducir padding horizontal en la celda de acciones para ganar aire */
+  .routine-table-modern tbody td:nth-child(6) {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+}
+
+/* ===== Fila con fondo unificado (evita cortes cuando una celda es más alta) ===== */
+.routine-table-modern tbody tr {
+  position: relative;
+}
+
+/* Fondo/borde como una tarjeta que abarca toda la fila */
+.routine-table-modern tbody tr::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--tbl-border);
+  border-radius: var(--tbl-row-radius);
+  z-index: 0;
+  transition: background-color .18s ease, box-shadow .18s ease;
+  /* suaviza hover */
+  pointer-events: none;
+  /* evita capturar clics/hover por debajo del contenido */
+}
+
+/* Asegurar contenido por encima del fondo */
+.routine-table-modern tbody td {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* Desactivar radios por-celda (los gestiona el pseudo-elemento) */
+.routine-table-modern tbody td:first-child,
+.routine-table-modern tbody td:last-child {
+  border-radius: 0 !important;
+}
+
+/* Hover/focus sobre la fila completa */
+.routine-table-modern tbody tr:hover::before {
+  background: #fafbfc;
+  box-shadow: 0 4px 12px -8px rgba(0, 0, 0, .25);
+}
+
+.routine-table-modern tbody tr:focus-within::before {
+  outline: 2px solid rgba(0, 0, 0, .35);
+  outline-offset: 0;
+  background: #f6f8fa;
+}
+
+/* Mantener el espaciado vertical entre filas */
+.routine-table-modern {
+  border-collapse: separate;
+  border-spacing: 0 .6rem;
+}
+
+/* Evitar wraps raros en acciones */
+.routine-actions {
+  flex-wrap: nowrap;
+}
+
+/* ===== Header unificado como tarjeta (alineado con filas del tbody) ===== */
+.routine-table-modern thead tr {
+  position: relative;
+}
+
+.routine-table-modern thead tr::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* top:0; right:0; bottom:0; left:0 */
+  background: var(--tbl-head-bg);
+  border: 1px solid var(--tbl-border);
+  border-radius: var(--tbl-row-radius);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Los th no pintan fondo/bordes: los gestiona la tarjeta del header */
+.routine-table-modern thead th {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* Eliminar radios por-celda en header; lo pone la tarjeta */
+.routine-table-modern thead th:first-child,
+.routine-table-modern thead th:last-child {
+  border-radius: 0 !important;
+}
+
+/* Separadores internos entre columnas del header sin alterar ancho - Eliminados por solicitud */
+.routine-table-modern thead th+th {
+  box-shadow: none !important;
+}
+
+/* Alinear altura visual con filas: paddings consistentes */
+.routine-table-modern thead th {
+  padding: .9rem 1rem;
+}
+
+/* ===== Overrides anti-silueta: solo ::before pinta hover/focus (redondeado) ===== */
+.routine-table-modern tbody tr {
+  background: transparent !important;
+}
+
+.routine-table-modern tbody tr:hover {
+  background: transparent !important;
+}
+
+.routine-table-modern tbody td {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* Anular hover/focus de celdas para no romper el radio */
+.routine-table-modern tbody tr:hover td,
+.routine-table-modern tbody tr:focus-within td {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.custom-select {
+  padding: 12px 12px;
+  border-radius: 14px;
+  background-color: white;
+  font-size: 1rem;
+  width: 100%;
+  height: 48px;
+}
+
+.saved-users-popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1050;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.saved-users-popup {
+  background: #fff;
+  width: 65%;
+  max-height: 80%;
+  border-top-left-radius: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  border: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-header {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+.popup-body {
+  padding: 1rem;
+  overflow-y: auto;
+  flex: 1 1 auto;
+}
+
+.popup-body .table td {
+  vertical-align: middle;
+}
+
+/* Estilo flotante también para selects */
+.md-input:focus-within label {
+  transform: translateY(-1.3rem) scale(0.9);
+  background: #fff;
+  padding: 0 0.25rem;
+  color: #000000;
+}
+
+.md-input.has-value label {
+  transform: translateY(-1.3rem) scale(0.9);
+  background: #fff;
+  padding: 0 0.25rem;
+  color: #000000;
+}
+
+/* followers*/
+.followers {
+  display: flex;
+  gap: 1.5rem;
+  /* "tabulación" entre followers y following */
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  /* responsivo */
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.follower-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+/* etiqueta (texto) en semi-bold; el ":" forma parte de la etiqueta */
+.follower-item .label {
+  font-weight: 600;
+  margin-right: 0.25rem;
+}
+
+/* número en normal (no bold) */
+.follower-item .value {
+  font-weight: 400;
+  color: #111;
+}

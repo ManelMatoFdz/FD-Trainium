@@ -1,0 +1,11 @@
+export const FIND_ALL_COMPLETED = 'project/routines/findAllCompleted';
+export const FIND_BY_ID_COMPLETED = 'project/routines/findByIdCompleted';
+export const CLEAR_CURRENT = 'project/routines/clearCurrent';
+export const SAVE_COMPLETED = 'project/routines/saveCompleted';
+export const DELETE_COMPLETED = 'project/routines/deleteCompleted';
+export const FIND_ALL_CATEGORIES_COMPLETED = "project/routines/findAllCategoriesCompleted";
+export const SEARCH_ROUTINES_COMPLETED = 'project/routines/searchRoutinesCompleted';
+export const SAVED_USERS_COMPLETED = 'project/routines/SavedUsersCompleted';
+export const FOLLOW_CREATOR_COMPLETED = "project/routines/followCreatorCompleted";
+export const UNFOLLOW_CREATOR_COMPLETED = "project/routines/unfollowCreatorCompleted";
+export const IS_FOLLOWING_CREATOR_COMPLETED = "project/routines/isFollowingCreatorCompleted";

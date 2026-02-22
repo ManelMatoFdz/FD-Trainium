@@ -1,0 +1,372 @@
+/* =============================================
+   CONTENEDOR DE TABLA - Card Moderno
+   ============================================= */
+.trainium-table-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.trainium-table-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* =============================================
+   WRAPPER - Scroll horizontal
+   ============================================= */
+.trainium-table-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Scrollbar personalizado */
+.trainium-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.trainium-table-wrapper::-webkit-scrollbar-track {
+    background: #f9fafb;
+}
+
+.trainium-table-wrapper::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.trainium-table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+/* =============================================
+   TABLA BASE
+   ============================================= */
+.trainium-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-size: 14px;
+}
+
+/* =============================================
+   HEADER - Encabezados
+   ============================================= */
+.trainium-table__head {
+    background: linear-gradient(to bottom, #fafbfc, #f9fafb);
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.trainium-table__header {
+    padding: 16px 18px;
+    font-weight: 700;
+    font-size: 13px;
+    color: #374151;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    background: #fafbfc;
+    z-index: 10;
+}
+
+.trainium-table__header:first-child {
+    padding-left: 24px;
+}
+
+.trainium-table__header:last-child {
+    padding-right: 24px;
+}
+
+/* =============================================
+   BODY - Filas y Celdas
+   ============================================= */
+.trainium-table__body {
+    background: #ffffff;
+}
+
+.trainium-table__row {
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.15s ease;
+}
+
+.trainium-table__row:last-child {
+    border-bottom: none;
+}
+
+.trainium-table__row:hover {
+    background: #f9fafb;
+}
+
+.trainium-table__row--clickable {
+    cursor: pointer;
+}
+
+.trainium-table__row--clickable:hover {
+    background: #f3f4f6;
+    /* avoid transform to prevent creating a new stacking context that
+       affects fixed-position dropdowns and can produce unwanted horizontal scroll */
+}
+
+.trainium-table__row--clickable:active {
+    /* subtle press effect using box-shadow instead of transform */
+    box-shadow: inset 0 0 0 9999px rgba(0,0,0,0.01);
+}
+
+.trainium-table__cell {
+    padding: 16px 18px;
+    color: #111827;
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+.trainium-table__cell:first-child {
+    padding-left: 24px;
+}
+
+.trainium-table__cell:last-child {
+    padding-right: 24px;
+}
+
+/* IDs y textos pequeños */
+.trainium-table__cell--id {
+    color: #9ca3af;
+    font-size: 13px;
+    font-weight: 500;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Fira Code', monospace;
+}
+
+/* Textos secundarios */
+.trainium-table__cell--secondary {
+    color: #6b7280;
+}
+
+/* Links dentro de celdas */
+.trainium-table__cell a {
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+}
+
+.trainium-table__cell a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #111827;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.trainium-table__cell a:hover {
+  color: #000000;
+}
+
+.trainium-table__cell a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Badges */
+.trainium-table__badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background: #eff6ff;
+    color: #1e40af;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid #dbeafe;
+    white-space: nowrap;
+}
+
+.trainium-table__badge--ghost {
+    background: #f9fafb;
+    color: #6b7280;
+    border-color: #e5e7eb;
+}
+
+.trainium-table__badge--success {
+    background: #ecfdf5;
+    color: #065f46;
+    border-color: #d1fae5;
+}
+
+.trainium-table__badge--warning {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fed7aa;
+}
+
+.trainium-table__badge--danger {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+/* Contenedor de acciones */
+.trainium-table__actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* =============================================
+   ESTADO VACÍO
+   ============================================= */
+.trainium-table__empty {
+    padding: 0 !important;
+    text-align: center;
+}
+
+.trainium-table__empty-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    color: #9ca3af;
+}
+
+.trainium-table__empty-content svg {
+    margin-bottom: 12px;
+    color: #d1d5db;
+}
+
+.trainium-table__empty-content p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* =============================================
+   ESTADO DE CARGA
+   ============================================= */
+.trainium-table-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 64px 24px;
+    color: #6b7280;
+}
+
+.trainium-table-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.trainium-table-loading p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+    .trainium-table__header,
+    .trainium-table__cell {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .trainium-table__header:first-child,
+    .trainium-table__cell:first-child {
+        padding-left: 16px;
+    }
+
+    .trainium-table__header:last-child,
+    .trainium-table__cell:last-child {
+        padding-right: 16px;
+    }
+
+    .trainium-table__badge {
+        font-size: 11px;
+        padding: 3px 8px;
+    }
+
+    .trainium-table__empty-content {
+        padding: 32px 16px;
+    }
+
+    .trainium-table__empty-content svg {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* =============================================
+   UTILIDADES
+   ============================================= */
+.trainium-table__text-truncate {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.trainium-table__text-wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.trainium-table__text-nowrap {
+    white-space: nowrap;
+}
+
+/* Alineación */
+.trainium-table__cell--left {
+    text-align: left;
+}
+
+.trainium-table__cell--center {
+    text-align: center;
+}
+
+.trainium-table__cell--right {
+    text-align: right;
+}
+
+/* =============================================
+   ACCESIBILIDAD
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    .trainium-table-card,
+    .trainium-table__row,
+    .trainium-table__cell a,
+    .trainium-table-spinner {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Focus visible para navegación por teclado */
+.trainium-table__row--clickable:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+

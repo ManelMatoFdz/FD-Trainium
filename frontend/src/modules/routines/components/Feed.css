@@ -1,0 +1,334 @@
+/* =============================================
+   FEED - Actividad de Amigos
+   Estilos coherentes con ExecutionsHistory
+   ============================================= */
+
+/* =============================================
+   ITEMS DEL FEED
+   ============================================= */
+.feed-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.feed-item {
+    background: #fff;
+    border: 1px solid #e1e4e8;
+    border-radius: 16px;
+    padding: 1rem 1.25rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: feedItemFadeIn 0.3s ease;
+}
+
+.feed-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =============================================
+   HEADER DEL AUTOR
+   ============================================= */
+.feed-item-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid #f1f3f6;
+}
+
+.feed-item-avatar-link {
+    flex-shrink: 0;
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #e1e4e8;
+    transition: border-color 0.2s ease;
+}
+
+.feed-item-avatar-link:hover {
+    border-color: #1f2328;
+}
+
+.feed-item-author-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.feed-item-author-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #1f2328;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.feed-item-author-name:hover {
+    color: #0969da;
+    text-decoration: none;
+}
+
+/* =============================================
+   BADGES DE TIPO
+   ============================================= */
+.feed-item-type-badge {
+    font-size: 0.75rem;
+}
+
+.badge-execution {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: #1a7f37;
+    color: #fff;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+}
+
+.badge-routine {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: #0969da;
+    color: #fff;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.02em;
+}
+
+/* =============================================
+   CONTENIDO PRINCIPAL (como execution-list-item)
+   ============================================= */
+.feed-item-content {
+    margin-left: 0;
+    border: 1px solid transparent !important;
+    background: #fafbfc !important;
+    border-radius: 12px !important;
+    margin-bottom: 0;
+    text-decoration: none !important;
+    display: block;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.feed-item-content:hover {
+    background: #f6f8fa !important;
+    border-color: #d0d7de !important;
+    text-decoration: none !important;
+}
+
+/* Asegurar que los badges se alineen correctamente */
+.feed-item-content .execution-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Evitar que el botón de like se rompa */
+.feed-item-content .execution-badges .feed-like-button {
+    z-index: 10;
+    position: relative;
+}
+
+/* =============================================
+   META INFO
+   ============================================= */
+.feed-item .execution-meta .category {
+    color: #6c757d;
+    font-size: 0.8rem;
+}
+
+/* Evitar que el emoji del calendario corte los números de la fecha */
+.feed-item .execution-meta span,
+.feed-item .execution-meta time {
+    overflow: visible;
+    white-space: nowrap;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 767.98px) {
+    .feed-item {
+        padding: 0.85rem 1rem;
+    }
+
+    .feed-item-author {
+        gap: 0.6rem;
+        padding-bottom: 0.7rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .feed-item-author-name {
+        font-size: 0.875rem;
+    }
+
+    .badge-execution,
+    .badge-routine {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .feed-item-content .execution-badges {
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .feed-items-list {
+        gap: 1rem;
+    }
+
+    .feed-item {
+        padding: 0.75rem;
+    }
+
+    .feed-item-content .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 0.5rem;
+    }
+
+    .feed-item-content .execution-badges {
+        justify-content: flex-start;
+    }
+}
+
+/* =============================================
+   ANIMACIÓN
+   ============================================= */
+@keyframes feedItemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =============================================
+   ACCESIBILIDAD
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+    .feed-item {
+        animation: none;
+    }
+}
+
+.feed-item-content:focus-visible {
+    outline: none;
+    border: 2px solid #1f2328 !important;
+}
+
+/* =============================================
+   BOTÓN DE LIKE - Nuevo diseño con animación
+   ============================================= */
+.feed-like-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: #f8f9fa;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 0.25em 0.5em;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    outline: none;
+    line-height: 1;
+}
+
+.feed-like-button:hover:not(.feed-like-button--readonly):not(:disabled) {
+    border-color: #f87171;
+    color: #ef4444;
+    background: #fef2f2;
+}
+
+.feed-like-button:focus-visible {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+}
+
+/* Estado con like activo */
+.feed-like-button--liked {
+    background: #ef4444;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+.feed-like-button--liked:hover:not(:disabled) {
+    background: #dc2626;
+    border-color: #dc2626;
+    color: #fff;
+}
+
+/* Estado de carga */
+.feed-like-button--loading {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Estado readonly (para rutinas) */
+.feed-like-button--readonly {
+    cursor: default;
+}
+
+/* Icono del corazón */
+.feed-like-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease, color 0.25s ease;
+}
+
+.feed-like-button:hover:not(.feed-like-button--readonly):not(:disabled) .feed-like-icon {
+    transform: scale(1.15);
+}
+
+.feed-like-button--liked .feed-like-icon {
+    animation: likeHeartPop 0.35s ease;
+}
+
+/* Contador de likes */
+.feed-like-count {
+    line-height: 1;
+}
+
+/* Animación del corazón al dar like */
+@keyframes likeHeartPop {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.3);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .feed-like-button,
+    .feed-like-icon {
+        transition: none;
+    }
+    .feed-like-button--liked .feed-like-icon {
+        animation: none;
+    }
+}

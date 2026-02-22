@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home when user is not logged in (landing page) renders landing correctly (snapshot) 1`] = `
+<div
+  className="home-landing"
+>
+  <div
+    className="hero-section"
+  >
+    <div
+      className="hero-overlay"
+    />
+    <div
+      className="hero-content"
+    >
+      <div
+        className="hero-text-wrapper"
+      >
+        <h1
+          className="hero-title animate-fade-in"
+        >
+          Transforma tu Entrenamiento
+        </h1>
+        <p
+          className="hero-subtitle animate-fade-in-delay"
+        >
+          La plataforma definitiva para entrenadores y atletas. Crea rutinas personalizadas, gestiona ejercicios y lleva tu rendimiento al siguiente nivel.
+        </p>
+        <div
+          className="hero-cta animate-fade-in-delay-2"
+        >
+          <a
+            className="btn btn-primary btn-lg cta-primary"
+            href="/users/signup"
+            onClick={[Function]}
+          >
+            Comenzar Ahora
+            <i
+              className="fas fa-arrow-right ml-2"
+            />
+          </a>
+          <a
+            className="btn btn-outline-light btn-lg cta-secondary"
+            href="/users/login"
+            onClick={[Function]}
+          >
+            Iniciar Sesión
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="features-section"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-md-4 feature-card"
+        >
+          <div
+            className="feature-icon"
+          >
+            <i
+              className="fas fa-dumbbell fa-3x"
+            />
+          </div>
+          <h3>
+            Rutinas Personalizadas
+          </h3>
+          <p>
+            Crea y gestiona rutinas adaptadas a cada objetivo. Control total sobre ejercicios, series y repeticiones.
+          </p>
+        </div>
+        <div
+          className="col-md-4 feature-card"
+        >
+          <div
+            className="feature-icon"
+          >
+            <i
+              className="fas fa-chart-line fa-3x"
+            />
+          </div>
+          <h3>
+            Seguimiento Avanzado
+          </h3>
+          <p>
+            Monitoriza tu progreso y el de tus atletas con estadísticas detalladas y visualizaciones claras.
+          </p>
+        </div>
+        <div
+          className="col-md-4 feature-card"
+        >
+          <div
+            className="feature-icon"
+          >
+            <i
+              className="fas fa-users fa-3x"
+            />
+          </div>
+          <h3>
+            Gestión Integral
+          </h3>
+          <p>
+            Entrenadores y usuarios conectados. Asigna rutinas, comparte ejercicios y potencia los resultados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer
+    className="home-footer landing-footer"
+  >
+    <div
+      className="container"
+    >
+      <p
+        className="footer-text"
+      >
+        © Trainium 2025
+      </p>
+    </div>
+  </footer>
+</div>
+`;

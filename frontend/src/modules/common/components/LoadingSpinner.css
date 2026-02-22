@@ -1,0 +1,169 @@
+/* =============================================
+   LoadingSpinner - Spinner de carga personalizado
+   ============================================= */
+
+
+/* Root spinner container.
+   - When used as overlay it becomes full-screen and blocks interaction.
+   - When used inline (non-overlay) it is positioned relatively and does not block clicks. */
+.trainium-loading-spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.trainium-loading-spinner--overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* place overlay under the navbar so the navbar remains visible while loading */
+  z-index: 1020;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  /* overlay should block interaction for underlying content */
+  pointer-events: auto;
+}
+
+.trainium-loading-spinner--inline {
+  /* when inline we don't block clicks: allow events to pass through */
+  position: relative;
+  pointer-events: none;
+}
+
+.trainium-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Tamaños del contenedor */
+.trainium-spinner-container--sm {
+  transform: scale(0.8);
+}
+
+.trainium-spinner-container--md {
+  transform: scale(1);
+}
+
+.trainium-spinner-container--lg {
+  transform: scale(1.2);
+}
+
+/* Spinner principal */
+.trainium-spinner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* prevent spinner itself from intercepting pointer events when inline */
+  pointer-events: none;
+}
+
+/* Anillo exterior */
+.trainium-spinner__ring {
+  position: relative;
+  border-radius: 50%;
+  /* light track to match page aesthetics */
+  border: 4px solid rgba(226, 232, 240, 0.95);
+  width: 44px;
+  height: 44px;
+}
+
+.trainium-spinner__ring::after {
+  /* colored arc that rotates — wheel-only spinner */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid transparent;
+  border-top-color: #1d1d1d; /* Trainium accent */
+  border-right-color: rgba(0, 0, 0, 0.9);
+  box-sizing: border-box;
+  animation: trainium-spinner-rotate 0.72s linear infinite;
+}
+
+/* Tamaños específicos */
+.trainium-spinner-container--sm .trainium-spinner__ring { width: 28px; height: 28px; }
+.trainium-spinner-container--md .trainium-spinner__ring { width: 44px; height: 44px; }
+.trainium-spinner-container--lg .trainium-spinner__ring { width: 64px; height: 64px; }
+
+/* Mensaje */
+.trainium-spinner__message {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: center;
+  /* subtle appear animation only */
+  animation: trainium-fade-in 160ms ease-in-out both;
+}
+
+/* Table-specific loading styles */
+.trainium-table__loading-spinner {
+  width: 100%;
+  padding: 36px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(250,250,251,0.6), rgba(250,250,251,0.4));
+  border-top: 1px dashed rgba(0,0,0,0.03);
+  box-sizing: border-box;
+}
+
+.trainium-table__loading-spinner .trainium-spinner__ring {
+  width: 36px;
+  height: 36px;
+  border-width: 3px;
+}
+
+.trainium-table__loading-spinner .trainium-spinner__ring::after {
+  animation-duration: 0.72s;
+}
+
+.trainium-table__loading-spinner .trainium-spinner__message {
+  display: none; /* hide textual message inside table for compactness */
+}
+
+/* Animaciones */
+@keyframes trainium-spinner-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes trainium-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* removed legacy dot/pulse animations — spinner is now a single rotating wheel */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .trainium-spinner-container--lg {
+    transform: scale(1);
+  }
+  
+  .trainium-spinner-container--md {
+    transform: scale(0.9);
+  }
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .trainium-spinner__ring,
+  .trainium-spinner__ring::after,
+  .trainium-spinner__message {
+    animation: none;
+  }
+  .trainium-spinner__ring::after {
+    border-top-color: #3d7bff;
+    border-right-color: rgba(61,123,255,0.9);
+  }
+}
+

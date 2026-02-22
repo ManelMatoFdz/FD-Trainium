@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header when user is not logged in matches snapshot (logged out) 1`] = `
+<header
+  className="app-navbar-wrapper"
+  role="banner"
+>
+  <nav
+    aria-label="Principal"
+    className="navbar navbar-expand-xl navbar-dark main-navbar"
+  >
+    <div
+      className="navbar-frame container-fluid"
+    >
+      <a
+        aria-label="Inicio"
+        className="navbar-brand brand-combo d-flex align-items-center"
+        href="/"
+        onClick={[Function]}
+      >
+        <div
+          className="brand-logo-wrapper d-flex align-items-center justify-content-center"
+        >
+          <img
+            alt="Trainium"
+            className="brand-logo"
+            height="48"
+            onError={[Function]}
+            src="/trainium-logo-2.png"
+            width="48"
+          />
+        </div>
+        <span
+          className="brand-text ml-2 text-uppercase"
+        >
+          Trainium
+        </span>
+      </a>
+      <button
+        aria-controls="navbarMainContent"
+        aria-expanded="false"
+        aria-label="Mostrar menú"
+        className="navbar-toggler"
+        data-target="#navbarMainContent"
+        data-toggle="collapse"
+        type="button"
+      >
+        <span
+          className="navbar-toggler-icon"
+        />
+      </button>
+      <div
+        className="collapse navbar-collapse"
+        id="navbarMainContent"
+      >
+        <nav
+          aria-label="Navegación de autenticación"
+          className="navbar-nav auth-links ml-auto"
+        >
+          <ul
+            className="navbar-nav auth-links ml-auto"
+          >
+            <li
+              className="nav-item"
+              role="none"
+            >
+              <a
+                className="nav-link "
+                href="/users/login"
+                id="loginLink"
+                onClick={[Function]}
+                role="menuitem"
+              >
+                Iniciar sesión
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </nav>
+</header>
+`;
